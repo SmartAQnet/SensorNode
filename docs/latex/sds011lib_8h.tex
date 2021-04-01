@@ -1,0 +1,90 @@
+\hypertarget{sds011lib_8h}{}\section{esp32-\/stationary/sds011lib.h File Reference}
+\label{sds011lib_8h}\index{esp32-\/stationary/sds011lib.h@{esp32-\/stationary/sds011lib.h}}
+
+
+E\+S\+P32 C/\+C++ Arduino library for the Nova Fitness S\+D\+S011 PM sensor (interface)  
+
+
+{\ttfamily \#include \char`\"{}Arduino.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classsds011}{sds011}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classsds011}{sds011}} sensor class interface to interace with the hardware \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{sds011lib_8h_aa7af1453a9caa4f85b40e2e386c741ba}\label{sds011lib_8h_aa7af1453a9caa4f85b40e2e386c741ba}} 
+\#define \mbox{\hyperlink{sds011lib_8h_aa7af1453a9caa4f85b40e2e386c741ba}{A\+U\+T\+O\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+M\+O\+DE}}~0
+\begin{DoxyCompactList}\small\item\em Reporting mode as auto. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a97c116c4d91c56caf20a969157345b4f}\label{sds011lib_8h_a97c116c4d91c56caf20a969157345b4f}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a97c116c4d91c56caf20a969157345b4f}{Q\+U\+E\+R\+Y\+\_\+\+M\+O\+DE}}~1
+\begin{DoxyCompactList}\small\item\em Reporting mode as queries. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a064cc7153fdb5596b2079d865dd9e055}\label{sds011lib_8h_a064cc7153fdb5596b2079d865dd9e055}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a064cc7153fdb5596b2079d865dd9e055}{R\+E\+A\+D\+\_\+\+M\+O\+DE}}~0
+\begin{DoxyCompactList}\small\item\em get or receive \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_aa2fe33f497c74e0b5a72f36f121b2ef0}\label{sds011lib_8h_aa2fe33f497c74e0b5a72f36f121b2ef0}} 
+\#define \mbox{\hyperlink{sds011lib_8h_aa2fe33f497c74e0b5a72f36f121b2ef0}{W\+R\+I\+T\+E\+\_\+\+M\+O\+DE}}~1
+\begin{DoxyCompactList}\small\item\em set or write \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a6097218fc13c9936e96507d6fd9fafe0}\label{sds011lib_8h_a6097218fc13c9936e96507d6fd9fafe0}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a6097218fc13c9936e96507d6fd9fafe0}{S\+L\+E\+E\+P\+\_\+\+M\+O\+DE}}~0
+\begin{DoxyCompactList}\small\item\em mode set to sleep \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a6999479ba92a931638a17a00c35a5234}\label{sds011lib_8h_a6999479ba92a931638a17a00c35a5234}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a6999479ba92a931638a17a00c35a5234}{W\+O\+R\+K\+\_\+\+M\+O\+DE}}~1
+\begin{DoxyCompactList}\small\item\em mode set to normal \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a41b0180f12af925ed6e81a3566c0e448}\label{sds011lib_8h_a41b0180f12af925ed6e81a3566c0e448}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a41b0180f12af925ed6e81a3566c0e448}{M\+A\+X\+\_\+\+W\+A\+IT}}~30
+\begin{DoxyCompactList}\small\item\em set the maximum trials for response \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_afdc326bd5037b2251e62f398ab1b48d1}\label{sds011lib_8h_afdc326bd5037b2251e62f398ab1b48d1}} 
+\#define \mbox{\hyperlink{sds011lib_8h_afdc326bd5037b2251e62f398ab1b48d1}{D\+O\+N\+T\+\_\+\+C\+A\+RE}}~0
+\begin{DoxyCompactList}\small\item\em dont care while reading \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a0934720e93f3391c08e6ba6c62c24937}\label{sds011lib_8h_a0934720e93f3391c08e6ba6c62c24937}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a0934720e93f3391c08e6ba6c62c24937}{M\+S\+G\+\_\+\+H\+E\+AD}}~0x\+AA
+\begin{DoxyCompactList}\small\item\em sds response header \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_ad6af8ab7a622ed65a274facc30ceaae5}\label{sds011lib_8h_ad6af8ab7a622ed65a274facc30ceaae5}} 
+\#define \mbox{\hyperlink{sds011lib_8h_ad6af8ab7a622ed65a274facc30ceaae5}{M\+S\+G\+\_\+\+T\+A\+IL}}~0x\+AB
+\begin{DoxyCompactList}\small\item\em sds response footer \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_aeee8bf9ae2cc060d657e7b6d106d36a8}\label{sds011lib_8h_aeee8bf9ae2cc060d657e7b6d106d36a8}} 
+\#define \mbox{\hyperlink{sds011lib_8h_aeee8bf9ae2cc060d657e7b6d106d36a8}{M\+S\+G\+\_\+\+R\+E\+S\+E\+R\+V\+ED}}~0x00
+\begin{DoxyCompactList}\small\item\em sds response/command reserve word \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_ad4a1f674dc2854a094226a0ac8699e96}\label{sds011lib_8h_ad4a1f674dc2854a094226a0ac8699e96}} 
+\#define \mbox{\hyperlink{sds011lib_8h_ad4a1f674dc2854a094226a0ac8699e96}{C\+M\+D\+\_\+\+W\+R\+I\+T\+E\+\_\+\+M\+O\+DE}}~0x\+B4
+\begin{DoxyCompactList}\small\item\em sds sending command \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_aa1bcad24553b76813dc5992cf3c4491f}\label{sds011lib_8h_aa1bcad24553b76813dc5992cf3c4491f}} 
+\#define \mbox{\hyperlink{sds011lib_8h_aa1bcad24553b76813dc5992cf3c4491f}{R\+E\+P\+L\+Y\+\_\+\+D\+A\+TA}}~0x\+C0
+\begin{DoxyCompactList}\small\item\em response query data indication \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_ac2a8831e0c9399781fb93bf3881d722a}\label{sds011lib_8h_ac2a8831e0c9399781fb93bf3881d722a}} 
+\#define \mbox{\hyperlink{sds011lib_8h_ac2a8831e0c9399781fb93bf3881d722a}{R\+E\+P\+L\+Y\+\_\+\+C\+FG}}~0x\+C5
+\begin{DoxyCompactList}\small\item\em response query configuration indication \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a74aad2329ceebf678b8918572082deb0}\label{sds011lib_8h_a74aad2329ceebf678b8918572082deb0}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a74aad2329ceebf678b8918572082deb0}{C\+M\+D\+\_\+\+R\+E\+P\+O\+R\+T\+I\+N\+G\+\_\+\+M\+O\+DE}}~0x02
+\begin{DoxyCompactList}\small\item\em sending command for reporting mode \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_ab53eb41bb7324d95131dd80e13a41f8c}\label{sds011lib_8h_ab53eb41bb7324d95131dd80e13a41f8c}} 
+\#define \mbox{\hyperlink{sds011lib_8h_ab53eb41bb7324d95131dd80e13a41f8c}{C\+M\+D\+\_\+\+Q\+U\+E\+R\+Y\+\_\+\+D\+A\+TA}}~0x04
+\begin{DoxyCompactList}\small\item\em sending command for query data mode \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a0d5bf1b6286e27da860eae2bc62c96a3}\label{sds011lib_8h_a0d5bf1b6286e27da860eae2bc62c96a3}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a0d5bf1b6286e27da860eae2bc62c96a3}{C\+M\+D\+\_\+\+S\+E\+T\+\_\+\+D\+E\+V\+I\+C\+E\+\_\+\+ID}}~0x05
+\begin{DoxyCompactList}\small\item\em sending command to set device id \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a69285b2fe67473476bce97967aef242d}\label{sds011lib_8h_a69285b2fe67473476bce97967aef242d}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a69285b2fe67473476bce97967aef242d}{C\+M\+D\+\_\+\+S\+L\+E\+E\+P\+\_\+\+A\+N\+D\+\_\+\+W\+O\+RK}}~0x06
+\begin{DoxyCompactList}\small\item\em sending command for sleep and work mode \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a402aa25767971d896ac418fc1a3fcce9}\label{sds011lib_8h_a402aa25767971d896ac418fc1a3fcce9}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a402aa25767971d896ac418fc1a3fcce9}{C\+M\+D\+\_\+\+F\+I\+R\+M\+W\+A\+R\+E\+\_\+\+V\+E\+R\+S\+I\+ON}}~0x07
+\begin{DoxyCompactList}\small\item\em sending command for geting firmware version \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_ad916634887a0810e25e3dbbdc60c8544}\label{sds011lib_8h_ad916634887a0810e25e3dbbdc60c8544}} 
+\#define \mbox{\hyperlink{sds011lib_8h_ad916634887a0810e25e3dbbdc60c8544}{C\+M\+D\+\_\+\+W\+O\+R\+K\+I\+N\+G\+\_\+\+P\+E\+R\+I\+OD}}~0x08
+\begin{DoxyCompactList}\small\item\em sending command for working period setting \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{sds011lib_8h_a87c3ec3696c2e8a2489b9930871469b4}\label{sds011lib_8h_a87c3ec3696c2e8a2489b9930871469b4}} 
+\#define \mbox{\hyperlink{sds011lib_8h_a87c3ec3696c2e8a2489b9930871469b4}{M\+S\+G\+\_\+\+FF}}~0xff
+\begin{DoxyCompactList}\small\item\em all set values as one \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+E\+S\+P32 C/\+C++ Arduino library for the Nova Fitness S\+D\+S011 PM sensor (interface) 
+
+\begin{DoxyAuthor}{Author}
+Sajjad Hussain 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}

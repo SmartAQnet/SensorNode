@@ -1,0 +1,1244 @@
+\hypertarget{main_8h}{}\section{esp32-\/stationary/main.h File Reference}
+\label{main_8h}\index{esp32-\/stationary/main.h@{esp32-\/stationary/main.h}}
+
+
+This the main page for the S\+M\+A\+R\+T\+A\+Q\+N\+ET which is the core of the project.  
+
+
+{\ttfamily \#include \char`\"{}src/lib/\+S\+D\+S011/\+S\+D\+S011.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Adafruit\+\_\+\+Sensor.\+h$>$}\newline
+{\ttfamily \#include $<$Adafruit\+\_\+\+B\+M\+E280.\+h$>$}\newline
+{\ttfamily \#include $<$D\+H\+T.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino\+Json.\+h$>$}\newline
+{\ttfamily \#include $<$Preferences.\+h$>$}\newline
+{\ttfamily \#include $<$Wi\+Fi.\+h$>$}\newline
+{\ttfamily \#include $<$Web\+Server.\+h$>$}\newline
+{\ttfamily \#include $<$E\+S\+Pm\+D\+N\+S.\+h$>$}\newline
+{\ttfamily \#include $<$Wire.\+h$>$}\newline
+{\ttfamily \#include $<$U8g2lib.\+h$>$}\newline
+{\ttfamily \#include $<$U8x8lib.\+h$>$}\newline
+{\ttfamily \#include $<$ez\+Time.\+h$>$}\newline
+{\ttfamily \#include $<$H\+T\+T\+P\+Client.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}nvs\+\_\+storage.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sensor.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}timer\+\_\+definitions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}send\+\_\+data.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}create\+\_\+json.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}my\+Auto\+Connect.\+h\char`\"{}}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8h_aa14dc39d52ab121ceb570f1a265385e0}\label{main_8h_aa14dc39d52ab121ceb570f1a265385e0}} 
+\#define \mbox{\hyperlink{main_8h_aa14dc39d52ab121ceb570f1a265385e0}{F\+I\+R\+M\+W\+A\+R\+E\+\_\+\+V\+E\+R\+S\+I\+ON}}~\char`\"{}0.\+8.\+7.\+0 pre\char`\"{}
+\begin{DoxyCompactList}\small\item\em firmware version, (for intermediate versions being actively worked on, append \char`\"{}pre\char`\"{} to number, indicating that it is \char`\"{}not yet\char`\"{} the specified number) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af06baee05280c189592215d5ea08e7ef}\label{main_8h_af06baee05280c189592215d5ea08e7ef}} 
+\#define \mbox{\hyperlink{main_8h_af06baee05280c189592215d5ea08e7ef}{sw\+\_\+version}}~\mbox{\hyperlink{main_8h_aa14dc39d52ab121ceb570f1a265385e0}{F\+I\+R\+M\+W\+A\+R\+E\+\_\+\+V\+E\+R\+S\+I\+ON}}
+\begin{DoxyCompactList}\small\item\em Software.\+version Name property for Thing and Datastreams. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_acbd8a4cec684c263a6cc312c70d45ef3}\label{main_8h_acbd8a4cec684c263a6cc312c70d45ef3}} 
+\#define \mbox{\hyperlink{main_8h_acbd8a4cec684c263a6cc312c70d45ef3}{hw\+\_\+date}}~\char`\"{}2020-\/01-\/17\+T12\+:00\+:00.\+000\+Z\char`\"{}
+\begin{DoxyCompactList}\small\item\em Hardware.\+Revision Date property for Thing and Datastreams. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{main_8h_acbb11c1e34784cf1e3147029f942bfd6}{B\+A\+S\+E\+\_\+\+U\+RL}}~\char`\"{}http\+://193.\+196.\+38.\+108\+:8080/F\+R\+O\+ST-\/\mbox{\hyperlink{main_8h_ab4f15e5e4298004d97fe1734ee796f5e}{Server}}/v1.\+0\char`\"{}
+\begin{DoxyCompactList}\small\item\em Debugging, uncomment to switch servers to release version, enable sending to madavi and luftdaten.\+info, and supress some debug output. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7e7232f278193dd8684f973ee70ef3f5}\label{main_8h_a7e7232f278193dd8684f973ee70ef3f5}} 
+\#define \mbox{\hyperlink{main_8h_a7e7232f278193dd8684f973ee70ef3f5}{M\+Y\+\_\+\+D\+E\+B\+UG}}
+\begin{DoxyCompactList}\small\item\em Define M\+Y\+D\+E\+B\+UG for controlling debugging. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5e9ff2a0401c64386c0b7277b07063cf}\label{main_8h_a5e9ff2a0401c64386c0b7277b07063cf}} 
+\#define \mbox{\hyperlink{main_8h_a5e9ff2a0401c64386c0b7277b07063cf}{M\+Y\+\_\+\+D\+BG}}(...)~do \{Serial.\+print( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ );\} while (0)
+\begin{DoxyCompactList}\small\item\em Define M\+Y\+\_\+\+D\+E\+B() for controlling serial.\+print debugging. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aeeb61519219a4061ee127e34907eddeb}\label{main_8h_aeeb61519219a4061ee127e34907eddeb}} 
+\#define \mbox{\hyperlink{main_8h_aeeb61519219a4061ee127e34907eddeb}{M\+Y\+\_\+\+D\+B\+Gln}}(...)~do \{Serial.\+println( \+\_\+\+\_\+\+V\+A\+\_\+\+A\+R\+G\+S\+\_\+\+\_\+ );\} while (0)
+\begin{DoxyCompactList}\small\item\em Define M\+Y\+\_\+\+D\+E\+Bln() for controlling serial.\+println debugging. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af58473239b566ebd1187b4cc8c71e97d}\label{main_8h_af58473239b566ebd1187b4cc8c71e97d}} 
+\#define \mbox{\hyperlink{main_8h_af58473239b566ebd1187b4cc8c71e97d}{E\+N\+A\+B\+L\+E\+\_\+\+S\+E\+N\+D2\+F\+R\+O\+ST}}~true
+\begin{DoxyCompactList}\small\item\em switch for sending to F\+R\+O\+ST teco server \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a71a7a65f7dd7e8f3ea14942213cd8217}\label{main_8h_a71a7a65f7dd7e8f3ea14942213cd8217}} 
+\#define \mbox{\hyperlink{main_8h_a71a7a65f7dd7e8f3ea14942213cd8217}{S\+E\+N\+S\+O\+R\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}~10000
+\begin{DoxyCompactList}\small\item\em intervall of reading sensor data in ms \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aef6021251fa63b1e73a98864b809904e}\label{main_8h_aef6021251fa63b1e73a98864b809904e}} 
+\#define \mbox{\hyperlink{main_8h_aef6021251fa63b1e73a98864b809904e}{S\+T\+A\+T\+S\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}~10
+\begin{DoxyCompactList}\small\item\em intervall of showing statistics informations, it is multiple of S\+E\+N\+S\+O\+R\+\_\+\+I\+N\+T\+E\+R\+V\+AL i.\+e. 10 mean 100s \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a18d121e3e45bfea386799ad36fb70b5f}\label{main_8h_a18d121e3e45bfea386799ad36fb70b5f}} 
+\#define \mbox{\hyperlink{main_8h_a18d121e3e45bfea386799ad36fb70b5f}{E\+N\+A\+B\+L\+E\+\_\+\+S\+E\+N\+D2\+M\+A\+D\+A\+VI}}~false
+\begin{DoxyCompactList}\small\item\em switch for sending to madavi api \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ace6bf58c74189bcd567c1135baaa9505}\label{main_8h_ace6bf58c74189bcd567c1135baaa9505}} 
+\#define \mbox{\hyperlink{main_8h_ace6bf58c74189bcd567c1135baaa9505}{E\+N\+A\+B\+L\+E\+\_\+\+S\+E\+N\+D2\+L\+U\+F\+T\+D\+A\+T\+EN}}~false
+\begin{DoxyCompactList}\small\item\em switch for sending to luftdaten api \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6f4b34eadf0db60197dce3a76e0d6632}\label{main_8h_a6f4b34eadf0db60197dce3a76e0d6632}} 
+\#define \mbox{\hyperlink{main_8h_a6f4b34eadf0db60197dce3a76e0d6632}{S\+E\+N\+D2\+M\+A\+D\+A\+V\+I\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}~145000
+\begin{DoxyCompactList}\small\item\em intervall of sending to madavi api in ms \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7a63477c73052322ebb3ea6f1bfe7e1d}\label{main_8h_a7a63477c73052322ebb3ea6f1bfe7e1d}} 
+\#define \mbox{\hyperlink{main_8h_a7a63477c73052322ebb3ea6f1bfe7e1d}{S\+E\+N\+D2\+L\+U\+F\+T\+D\+A\+T\+E\+N\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}~145000
+\begin{DoxyCompactList}\small\item\em intervall of sending to madavi api in ms \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a18bdfe88e9f5895863740df7ad801109}\label{main_8h_a18bdfe88e9f5895863740df7ad801109}} 
+\#define \mbox{\hyperlink{main_8h_a18bdfe88e9f5895863740df7ad801109}{E\+N\+A\+B\+L\+E\+\_\+\+D\+A\+I\+L\+Y\+\_\+\+R\+E\+B\+O\+OT}}~true
+\begin{DoxyCompactList}\small\item\em enable daily reboot at specific time \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a423126ae538bf9e83239e46e46cf1df9}\label{main_8h_a423126ae538bf9e83239e46e46cf1df9}} 
+\#define \mbox{\hyperlink{main_8h_a423126ae538bf9e83239e46e46cf1df9}{T\+I\+M\+E\+T\+O\+R\+E\+B\+O\+OT}}~\char`\"{}2245\char`\"{}
+\begin{DoxyCompactList}\small\item\em set time when to do daily reboot (hour of time of day for reboot goes here) //\+T\+O\+DO set proper time \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8a1756fdd61bca61d188ce01ece876b9}\label{main_8h_a8a1756fdd61bca61d188ce01ece876b9}} 
+\#define \mbox{\hyperlink{main_8h_a8a1756fdd61bca61d188ce01ece876b9}{A\+P\+M\+O\+D\+E\+\_\+\+R\+E\+B\+O\+O\+T\+\_\+\+T\+I\+M\+E\+O\+UT}}~600000
+\begin{DoxyCompactList}\small\item\em intervall of auto reboot while in access point mode (config mode) in ms (600000ms is 10min). autoreboot while in ap mode only occurs if no device is connected to the esp32 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad8124687637087b9096f96b838f93400}\label{main_8h_ad8124687637087b9096f96b838f93400}} 
+\#define \mbox{\hyperlink{main_8h_ad8124687637087b9096f96b838f93400}{N\+T\+P\+\_\+\+T\+I\+M\+E\+O\+U\+T\+\_\+\+W\+A\+IT}}~120
+\begin{DoxyCompactList}\small\item\em Timeout for N\+TP timeout (s) in wait\+For\+Sync() \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a953ca2c42ce0015ef8c2965e3b395100}\label{main_8h_a953ca2c42ce0015ef8c2965e3b395100}} 
+\#define \mbox{\hyperlink{main_8h_a953ca2c42ce0015ef8c2965e3b395100}{C\+R\+E\+D\+E\+N\+T\+I\+A\+L\+\_\+\+O\+F\+F\+S\+ET}}~0
+\begin{DoxyCompactList}\small\item\em Specified the offset if the user data exists. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aa585e8beebc12dba62dbdc15b8cf1f71}\label{main_8h_aa585e8beebc12dba62dbdc15b8cf1f71}} 
+\#define \mbox{\hyperlink{main_8h_aa585e8beebc12dba62dbdc15b8cf1f71}{data1\+\_\+url\+\_\+cc0}}~\char`\"{}https\+://creativecommons.\+org/publicdomain/zero/1.\+0/deed.\+de\char`\"{}
+\begin{DoxyCompactList}\small\item\em url for public domain \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a35c49e7e622aac3342eabee213dd4bfc}\label{main_8h_a35c49e7e622aac3342eabee213dd4bfc}} 
+\#define \mbox{\hyperlink{main_8h_a35c49e7e622aac3342eabee213dd4bfc}{data1\+\_\+url\+\_\+ccby}}~\char`\"{}https\+://creativecommons.\+org/licenses/by/4.\+0/deed.\+de\char`\"{}
+\begin{DoxyCompactList}\small\item\em url for license property \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac5d957e4fd3dc11cd97a54cf9ca057a4}\label{main_8h_ac5d957e4fd3dc11cd97a54cf9ca057a4}} 
+\#define \mbox{\hyperlink{main_8h_ac5d957e4fd3dc11cd97a54cf9ca057a4}{R\+ST}}~16
+\begin{DoxyCompactList}\small\item\em Reset P\+IN of O\+L\+ED Module. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7dfa2c4cfbfcba36416046052e7943e8}\label{main_8h_a7dfa2c4cfbfcba36416046052e7943e8}} 
+\#define \mbox{\hyperlink{main_8h_a7dfa2c4cfbfcba36416046052e7943e8}{O\+L\+E\+D\+\_\+\+A\+D\+DR}}~0x3c
+\begin{DoxyCompactList}\small\item\em The I2C address of the S\+S\+D1306 O\+L\+DE. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_afbf31d4d5bad7fd61418b8b8036df96c}\label{main_8h_afbf31d4d5bad7fd61418b8b8036df96c}} 
+\#define \mbox{\hyperlink{main_8h_afbf31d4d5bad7fd61418b8b8036df96c}{O\+L\+E\+D\+\_\+\+S\+DA}}~4
+\begin{DoxyCompactList}\small\item\em The S\+DA pin of the S\+S\+D1306 O\+L\+DE. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad3ddbbb48cad4c34406916e199b89122}\label{main_8h_ad3ddbbb48cad4c34406916e199b89122}} 
+\#define \mbox{\hyperlink{main_8h_ad3ddbbb48cad4c34406916e199b89122}{O\+L\+E\+D\+\_\+\+S\+CL}}~15
+\begin{DoxyCompactList}\small\item\em The S\+CL pin of the S\+S\+D1306 O\+L\+DE. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a572be0340cd57a60408e46a3b1e46a1b}\label{main_8h_a572be0340cd57a60408e46a3b1e46a1b}} 
+\#define \mbox{\hyperlink{main_8h_a572be0340cd57a60408e46a3b1e46a1b}{ds\+P\+M25}}~1
+\begin{DoxyCompactList}\small\item\em Post Observation Selector for S\+D\+S011 P\+M25. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a16b6701d5542db8a4a217041d30bd721}\label{main_8h_a16b6701d5542db8a4a217041d30bd721}} 
+\#define \mbox{\hyperlink{main_8h_a16b6701d5542db8a4a217041d30bd721}{ds\+P\+M10}}~2
+\begin{DoxyCompactList}\small\item\em Post Observation Selector for S\+D\+S011 P\+M10. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a169ccab923f5b63fc64a62bc86e1f3d0}\label{main_8h_a169ccab923f5b63fc64a62bc86e1f3d0}} 
+\#define \mbox{\hyperlink{main_8h_a169ccab923f5b63fc64a62bc86e1f3d0}{ds\+Hm\+Bme}}~3
+\begin{DoxyCompactList}\small\item\em Post Observation Selector for B\+M\+E280 Humidity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a793528db08466b6e4d82110abb3fbb7e}\label{main_8h_a793528db08466b6e4d82110abb3fbb7e}} 
+\#define \mbox{\hyperlink{main_8h_a793528db08466b6e4d82110abb3fbb7e}{ds\+Tm\+Bme}}~4
+\begin{DoxyCompactList}\small\item\em Post Observation Selector for B\+M\+E280 Temperature. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a58d3249fa2e7ce2234ed1c4fb88addc0}\label{main_8h_a58d3249fa2e7ce2234ed1c4fb88addc0}} 
+\#define \mbox{\hyperlink{main_8h_a58d3249fa2e7ce2234ed1c4fb88addc0}{ds\+Pr\+Bme}}~5
+\begin{DoxyCompactList}\small\item\em Post Observation Selector for B\+M\+E280 Pressure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aab1544fdd1b8c279fab84f7497370a42}\label{main_8h_aab1544fdd1b8c279fab84f7497370a42}} 
+\#define \mbox{\hyperlink{main_8h_aab1544fdd1b8c279fab84f7497370a42}{ds\+Hm\+Dht}}~6
+\begin{DoxyCompactList}\small\item\em Post Observation Selector for D\+H\+T22 Humidity. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9e0fd90cccd85c7b7cb00cab69a67952}\label{main_8h_a9e0fd90cccd85c7b7cb00cab69a67952}} 
+\#define \mbox{\hyperlink{main_8h_a9e0fd90cccd85c7b7cb00cab69a67952}{ds\+Tm\+Dht}}~7
+\begin{DoxyCompactList}\small\item\em Post Observation Selector for D\+H\+T22 Temperature. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a60fdfcce32e4426394298ad5ae821505}\label{main_8h_a60fdfcce32e4426394298ad5ae821505}} 
+\#define \mbox{\hyperlink{main_8h_a60fdfcce32e4426394298ad5ae821505}{init\+\_\+state}}~1
+\begin{DoxyCompactList}\small\item\em state machine initial state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a4a74679696693029b3d08dddaa209237}\label{main_8h_a4a74679696693029b3d08dddaa209237}} 
+\#define \mbox{\hyperlink{main_8h_a4a74679696693029b3d08dddaa209237}{check\+\_\+first\+\_\+sync}}~2
+\begin{DoxyCompactList}\small\item\em state machine check N\+TP sync state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a0ad2ed0873d73a0fde4a2d84a5a9c13d}\label{main_8h_a0ad2ed0873d73a0fde4a2d84a5a9c13d}} 
+\#define \mbox{\hyperlink{main_8h_a0ad2ed0873d73a0fde4a2d84a5a9c13d}{idle\+\_\+state}}~3
+\begin{DoxyCompactList}\small\item\em state machine idle state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ae04c5f63255c64419b7eae91e1c379fe}\label{main_8h_ae04c5f63255c64419b7eae91e1c379fe}} 
+\#define \mbox{\hyperlink{main_8h_ae04c5f63255c64419b7eae91e1c379fe}{wifi\+\_\+found}}~4
+\begin{DoxyCompactList}\small\item\em state machine Wi\+Fi found state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7dac1877da78ff920a2ab2795ede976d}\label{main_8h_a7dac1877da78ff920a2ab2795ede976d}} 
+\#define \mbox{\hyperlink{main_8h_a7dac1877da78ff920a2ab2795ede976d}{start\+\_\+measurement\+\_\+sds}}~5
+\begin{DoxyCompactList}\small\item\em state machine start measurement state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a11ebff5e32b5f74e552c32f4d9fb0b15}\label{main_8h_a11ebff5e32b5f74e552c32f4d9fb0b15}} 
+\#define \mbox{\hyperlink{main_8h_a11ebff5e32b5f74e552c32f4d9fb0b15}{start\+\_\+measurement\+\_\+bme}}~6
+\begin{DoxyCompactList}\small\item\em state machine check sensor selection state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a16533f6ba079327c04196dc9b5b9415d}\label{main_8h_a16533f6ba079327c04196dc9b5b9415d}} 
+\#define \mbox{\hyperlink{main_8h_a16533f6ba079327c04196dc9b5b9415d}{show\+\_\+sds\+\_\+values}}~7
+\begin{DoxyCompactList}\small\item\em state machine show valid S\+DS values state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a82d12775392b9fb39924aca0ccfaf8c3}\label{main_8h_a82d12775392b9fb39924aca0ccfaf8c3}} 
+\#define \mbox{\hyperlink{main_8h_a82d12775392b9fb39924aca0ccfaf8c3}{show\+\_\+bme\+\_\+values}}~8
+\begin{DoxyCompactList}\small\item\em state machine show valid B\+ME values state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a609b956a4d0ad00d4d75401bc39d72d5}\label{main_8h_a609b956a4d0ad00d4d75401bc39d72d5}} 
+\#define \mbox{\hyperlink{main_8h_a609b956a4d0ad00d4d75401bc39d72d5}{check\+\_\+location\+\_\+data}}~9
+\begin{DoxyCompactList}\small\item\em state machine check if position data is given state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7ea0a51f9714623b29ed8e3797661c4a}\label{main_8h_a7ea0a51f9714623b29ed8e3797661c4a}} 
+\#define \mbox{\hyperlink{main_8h_a7ea0a51f9714623b29ed8e3797661c4a}{check\+\_\+timesync}}~10
+\begin{DoxyCompactList}\small\item\em state machine check N\+TP sync again state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6c50afc28a01316257d5e54a52bbc34c}\label{main_8h_a6c50afc28a01316257d5e54a52bbc34c}} 
+\#define \mbox{\hyperlink{main_8h_a6c50afc28a01316257d5e54a52bbc34c}{create\+\_\+frost\+\_\+entties}}~11
+\begin{DoxyCompactList}\small\item\em state machine check if frost is initialized state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6ac298bfc53f29aea6febdb80c418157}\label{main_8h_a6ac298bfc53f29aea6febdb80c418157}} 
+\#define \mbox{\hyperlink{main_8h_a6ac298bfc53f29aea6febdb80c418157}{send\+\_\+sds\+\_\+data}}~12
+\begin{DoxyCompactList}\small\item\em state machine send sds data state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aeea7587e2003788250822b7e8b696c10}\label{main_8h_aeea7587e2003788250822b7e8b696c10}} 
+\#define \mbox{\hyperlink{main_8h_aeea7587e2003788250822b7e8b696c10}{send\+\_\+bme\+\_\+data}}~13
+\begin{DoxyCompactList}\small\item\em state machine send bme data state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ada9c2f5830058322e8e29358a9a00621}\label{main_8h_ada9c2f5830058322e8e29358a9a00621}} 
+\#define \mbox{\hyperlink{main_8h_ada9c2f5830058322e8e29358a9a00621}{send\+\_\+dht\+\_\+data}}~14
+\begin{DoxyCompactList}\small\item\em state machine send dht data state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9a56d8ccddbae8f646bb799874740cb9}\label{main_8h_a9a56d8ccddbae8f646bb799874740cb9}} 
+\#define \mbox{\hyperlink{main_8h_a9a56d8ccddbae8f646bb799874740cb9}{send\+\_\+to\+\_\+madavi}}~15
+\begin{DoxyCompactList}\small\item\em state machine send madavi data state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1f42fec1f82e7402efdac5c43b62bd2b}\label{main_8h_a1f42fec1f82e7402efdac5c43b62bd2b}} 
+\#define \mbox{\hyperlink{main_8h_a1f42fec1f82e7402efdac5c43b62bd2b}{send\+\_\+to\+\_\+luftdaten}}~16
+\begin{DoxyCompactList}\small\item\em state machine send luftdaten data state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a65679973ed9b853177fec4156b4fe159}\label{main_8h_a65679973ed9b853177fec4156b4fe159}} 
+\#define \mbox{\hyperlink{main_8h_a65679973ed9b853177fec4156b4fe159}{wifi\+\_\+error}}~17
+\begin{DoxyCompactList}\small\item\em state machine Wi\+Fi error state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aefbae19fa2c1e99c02689d2af5a578ad}\label{main_8h_aefbae19fa2c1e99c02689d2af5a578ad}} 
+\#define \mbox{\hyperlink{main_8h_aefbae19fa2c1e99c02689d2af5a578ad}{handle\+\_\+client}}~18
+\begin{DoxyCompactList}\small\item\em state machine handle client state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a98e7dcb90b2217dfda04e31e818653ae}\label{main_8h_a98e7dcb90b2217dfda04e31e818653ae}} 
+\#define \mbox{\hyperlink{main_8h_a98e7dcb90b2217dfda04e31e818653ae}{check\+\_\+server\+\_\+status}}~19
+\begin{DoxyCompactList}\small\item\em state machine check server response state \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aa9ad4f95f25f901187ad87f0e6018d42}\label{main_8h_aa9ad4f95f25f901187ad87f0e6018d42}} 
+\#define \mbox{\hyperlink{main_8h_aa9ad4f95f25f901187ad87f0e6018d42}{show\+\_\+2nd\+\_\+screen}}~20
+\begin{DoxyCompactList}\small\item\em state to show the 2nd screen \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5f57bb0b8398ff5387d9d949c3e7e5df}\label{main_8h_a5f57bb0b8398ff5387d9d949c3e7e5df}} 
+\#define \mbox{\hyperlink{main_8h_a5f57bb0b8398ff5387d9d949c3e7e5df}{start\+\_\+showing}}~21
+\begin{DoxyCompactList}\small\item\em state to start showing screens \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8h_a920c4e3276045ca1dff00e3bc50a6068}\label{main_8h_a920c4e3276045ca1dff00e3bc50a6068}} 
+\mbox{\hyperlink{classmy_auto_connect}{my\+Auto\+Connect}} \mbox{\hyperlink{main_8h_a920c4e3276045ca1dff00e3bc50a6068}{Portal}} (\mbox{\hyperlink{main_8h_ab4f15e5e4298004d97fe1734ee796f5e}{Server}})
+\begin{DoxyCompactList}\small\item\em initialise Auto\+Connect \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a15e276927c094d1e5f3c859829463ab8}\label{main_8h_a15e276927c094d1e5f3c859829463ab8}} 
+U8\+G2\+\_\+\+S\+S\+D1306\+\_\+128\+X64\+\_\+\+N\+O\+N\+A\+M\+E\+\_\+\+F\+\_\+\+H\+W\+\_\+\+I2C \mbox{\hyperlink{main_8h_a15e276927c094d1e5f3c859829463ab8}{u8g2}} (U8\+G2\+\_\+\+R0, 16, 15, 4)
+\begin{DoxyCompactList}\small\item\em initialise the O\+L\+ED which is used. O\+L\+ED Module Object with I2C \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1c6b64234ad0c2c95a942e59aa06b966}\label{main_8h_a1c6b64234ad0c2c95a942e59aa06b966}} 
+\mbox{\hyperlink{main_8h_a1c6b64234ad0c2c95a942e59aa06b966}{A\+C\+Element}} (cfg\+Script, \char`\"{}  $<$script src=\textbackslash{}\char`\"{}http\+://www.\+openlayers.\+org/api/Open\+Layers.\+js\textbackslash{}\char`\"{}$>$$<$/script$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$script$>$\textbackslash{}n\char`\"{} \char`\"{}    //global vars\textbackslash{}n\char`\"{} \char`\"{}    var \mbox{\hyperlink{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}{latitude}};\textbackslash{}n\char`\"{} \char`\"{}    var \mbox{\hyperlink{main_8h_a006303577d6adb772761727538b74f80}{longitude}};\textbackslash{}n\char`\"{} \char`\"{}    //var elevation;\textbackslash{}n\char`\"{} \char`\"{}    var address            = \textbackslash{}\char`\"{}\textbackslash{}\char`\"{};\textbackslash{}n\char`\"{} \char`\"{}    var wgs\+Projection      = new Open\+Layers.\+Projection(\textbackslash{}\char`\"{}E\+P\+S\+G\+:4326\textbackslash{}\char`\"{});   // W\+GS 1984 Projection\textbackslash{}n\char`\"{} \char`\"{}    var mercator\+Projection = new Open\+Layers.\+Projection(\textbackslash{}\char`\"{}E\+P\+S\+G\+:900913\textbackslash{}\char`\"{}); // Spherical Mercator Projection\textbackslash{}n\char`\"{} \char`\"{}    var initialposition    = new Open\+Layers.\+Lon\+Lat(8.\+424171,49.\+013034).transform(wgs\+Projection, mercator\+Projection);\textbackslash{}n\char`\"{} \char`\"{}    var initialzoom        = 3;\textbackslash{}n\char`\"{} \char`\"{}    var position           = initialposition;\textbackslash{}n\char`\"{} \char`\"{}    var zoom               = 18;\textbackslash{}n\char`\"{} \char`\"{}    var mapnik             = new Open\+Layers.\+Layer.\+O\+SM();\textbackslash{}n\char`\"{} \char`\"{}    var markers            = new Open\+Layers.\+Layer.\+Markers(\textbackslash{}\char`\"{}Markers\textbackslash{}\char`\"{});\textbackslash{}n\char`\"{} \char`\"{}    var marker             = new Open\+Layers.\+Marker(position);\textbackslash{}n\char`\"{} \char`\"{}    var touch\+Navigation    = new Open\+Layers.\+Control.\+Touch\+Navigation(\{\textbackslash{}n\char`\"{} \char`\"{}                                 default\+Click\+Options\+:\{\textbackslash{}n\char`\"{} \char`\"{}                                     pixel\+Tolerance\+: 10\textbackslash{}n\char`\"{} \char`\"{}                                 \}\textbackslash{}n\char`\"{} \char`\"{}                             \});\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}    // function to geocode\+: look up coordinates from address text field, populate lon and lat fields and update map \textbackslash{}n\char`\"{} \char`\"{}    function geolookup() \{\textbackslash{}n\char`\"{} \char`\"{}      address = document.\+get\+Element\+By\+Id(\textquotesingle{}input\+Address\textquotesingle{}).value;\textbackslash{}n\char`\"{} \char`\"{}      var request = new X\+M\+L\+Http\+Request();\textbackslash{}n\char`\"{} \char`\"{}      var url = \textbackslash{}\char`\"{}https\+://nominatim.\+openstreetmap.\+org/search/\textquotesingle{}\textbackslash{}\char`\"{} + encode\+U\+RI(address) + \textbackslash{}\char`\"{}\textquotesingle{}?format=json\&limit=1\textbackslash{}\char`\"{};\textbackslash{}n\char`\"{} \char`\"{}      request.\+open(\textquotesingle{}G\+ET\textquotesingle{}, url, true);\textbackslash{}n\char`\"{} \char`\"{}      request.\+onload = function() \{\textbackslash{}n\char`\"{} \char`\"{}        if (this.\+status $>$= 200 \&\& this.\+status $<$ 300) \{\textbackslash{}n\char`\"{} \char`\"{}          var response = J\+S\+O\+N.\+parse(this.\+response\+Text);\textbackslash{}n\char`\"{} \char`\"{}          if (response\mbox{[}0\mbox{]}) \{\textbackslash{}n\char`\"{} \char`\"{}            \mbox{\hyperlink{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}{latitude}} = Number(response\mbox{[}0\mbox{]}.lat).to\+Fixed(6);\textbackslash{}n\char`\"{} \char`\"{}            \mbox{\hyperlink{main_8h_a006303577d6adb772761727538b74f80}{longitude}} = Number(response\mbox{[}0\mbox{]}.lon).to\+Fixed(6);\textbackslash{}n\char`\"{} \char`\"{}            document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Lon\textbackslash{}\char`\"{}).value = \mbox{\hyperlink{main_8h_a006303577d6adb772761727538b74f80}{longitude}};\textbackslash{}n\char`\"{} \char`\"{}            document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Lat\textbackslash{}\char`\"{}).value = \mbox{\hyperlink{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}{latitude}};\textbackslash{}n\char`\"{} \char`\"{}            update\+Marker();\textbackslash{}n\char`\"{} \char`\"{}          \} else \{\textbackslash{}n\char`\"{} \char`\"{}            alert(\textbackslash{}\char`\"{}Keine Koordinaten gefunden, bitte Adress-\/Anfrage ändern.\textbackslash{}\char`\"{});\textbackslash{}n\char`\"{} \char`\"{}          \}\textbackslash{}n\char`\"{} \char`\"{}        \} \textbackslash{}n\char`\"{} \char`\"{}      \};\textbackslash{}n\char`\"{} \char`\"{}      request.\+send();\textbackslash{}n\char`\"{} \char`\"{}    \}\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}    // function to \textbackslash{}\char`\"{}move\textbackslash{}\char`\"{} marker (avoiding marker.\+move\+To(), as it is an \textbackslash{}\char`\"{}unofficial\textbackslash{}\char`\"{} function)\textbackslash{}n\char`\"{} \char`\"{}    function replace\+Marker() \{\textbackslash{}n\char`\"{} \char`\"{}      markers.\+clear\+Markers();\textbackslash{}n\char`\"{} \char`\"{}      position = new Open\+Layers.\+Lon\+Lat(\mbox{\hyperlink{main_8h_a006303577d6adb772761727538b74f80}{longitude}},\mbox{\hyperlink{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}{latitude}}).transform(wgs\+Projection, mercator\+Projection);\textbackslash{}n\char`\"{} \char`\"{}      marker = new Open\+Layers.\+Marker(position);\textbackslash{}n\char`\"{} \char`\"{}      markers.\+add\+Marker(marker);\textbackslash{}n\char`\"{} \char`\"{}    \}\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}    // function to update marker based on inputs and center on map\textbackslash{}n\char`\"{} \char`\"{}    function update\+Marker() \{\textbackslash{}n\char`\"{} \char`\"{}      \mbox{\hyperlink{main_8h_a006303577d6adb772761727538b74f80}{longitude}} = document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Lon\textbackslash{}\char`\"{}).value;\textbackslash{}n\char`\"{} \char`\"{}      \mbox{\hyperlink{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}{latitude}} = document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Lat\textbackslash{}\char`\"{}).value;  \textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}      if (typeof map !== \textquotesingle{}undefined\textquotesingle{}) \{\textbackslash{}n\char`\"{} \char`\"{}        if (\mbox{\hyperlink{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}{latitude}} \&\& \mbox{\hyperlink{main_8h_a006303577d6adb772761727538b74f80}{longitude}}) \{\textbackslash{}n\char`\"{} \char`\"{}          replace\+Marker();\textbackslash{}n\char`\"{} \char`\"{}          map.\+set\+Center(position, zoom);\textbackslash{}n\char`\"{} \char`\"{}        \} else \{\textbackslash{}n\char`\"{} \char`\"{}          markers.\+clear\+Markers();\textbackslash{}n\char`\"{} \char`\"{}          map.\+set\+Center(initialposition, initialzoom);\textbackslash{}n\char`\"{} \char`\"{}        \}\textbackslash{}n\char`\"{} \char`\"{}      \}\textbackslash{}n\char`\"{} \char`\"{}    \}\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}    // function to \textbackslash{}\char`\"{}move\textbackslash{}\char`\"{} marker on click in map\textbackslash{}n\char`\"{} \char`\"{}    Open\+Layers.\+Util.\+extend(touch\+Navigation, \{\textbackslash{}n\char`\"{} \char`\"{}      default\+Click\+: function(evnt) \{\textbackslash{}n\char`\"{} \char`\"{}        var lonlat = map.\+get\+Lon\+Lat\+From\+View\+Port\+Px(evnt.\+xy);\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n\char`\"{} \char`\"{}        \mbox{\hyperlink{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}{latitude}} =  lonlat.\+transform(mercator\+Projection, wgs\+Projection).lat.\+to\+Fixed(6);\textbackslash{}n\char`\"{} \char`\"{}        \mbox{\hyperlink{main_8h_a006303577d6adb772761727538b74f80}{longitude}} = lonlat.\+lon.\+to\+Fixed(6);\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Lon\textbackslash{}\char`\"{}).value = \mbox{\hyperlink{main_8h_a006303577d6adb772761727538b74f80}{longitude}};\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Lat\textbackslash{}\char`\"{}).value = \mbox{\hyperlink{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}{latitude}};\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n\char`\"{} \char`\"{}        replace\+Marker();\textbackslash{}n\char`\"{} \char`\"{}      \}\textbackslash{}n\char`\"{} \char`\"{}    \});\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n\char`\"{} \char`\"{}    // function to unfocus current form element when enter key was pressed\textbackslash{}n\char`\"{} \char`\"{}    function unfocus\+Form() \{\textbackslash{}n\char`\"{} \char`\"{}      if (event.\+key == \textquotesingle{}Enter\textquotesingle{}) \{\textbackslash{}n\char`\"{} \char`\"{}        document.\+active\+Element.\+blur();\textbackslash{}n\char`\"{} \char`\"{}        return false;\textbackslash{}n\char`\"{} \char`\"{}      \} else \{\textbackslash{}n\char`\"{} \char`\"{}        return true;\textbackslash{}n\char`\"{} \char`\"{}      \}\textbackslash{}n\char`\"{} \char`\"{}    \}\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}    // execute the following once all D\+OM elements are loaded\textbackslash{}n\char`\"{} \char`\"{}    document.\+add\+Event\+Listener(\textquotesingle{}D\+O\+M\+Content\+Loaded\textquotesingle{}, function()\{\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}        // add geocoding button\textbackslash{}n\char`\"{} \char`\"{}        var findbutton = document.\+create\+Element(\textbackslash{}\char`\"{}button\textbackslash{}\char`\"{});\textbackslash{}n\char`\"{} \char`\"{}        findbutton.\+set\+Attribute(\textbackslash{}\char`\"{}id\textbackslash{}\char`\"{}, \textbackslash{}\char`\"{}geocode\textbackslash{}\char`\"{});\textbackslash{}n\char`\"{} \char`\"{}        findbutton.\+set\+Attribute(\textbackslash{}\char`\"{}type\textbackslash{}\char`\"{}, \textbackslash{}\char`\"{}button\textbackslash{}\char`\"{});\textbackslash{}n\char`\"{} \char`\"{}        findbutton.\+inner\+H\+T\+ML = \textbackslash{}\char`\"{}Suche Koordinaten\textbackslash{}\char`\"{};\textbackslash{}n\char`\"{} \char`\"{}        findbutton.\+add\+Event\+Listener (\textbackslash{}\char`\"{}click\textbackslash{}\char`\"{}, function() \{\textbackslash{}n\char`\"{} \char`\"{}          geolookup();\textbackslash{}n\char`\"{} \char`\"{}        \});\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}pgeocode\textbackslash{}\char`\"{}).append\+Child(findbutton);\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}        // init Open\+Layers map\textbackslash{}n\char`\"{} \char`\"{}        map = new Open\+Layers.\+Map(\textbackslash{}\char`\"{}map\+Div\textbackslash{}\char`\"{});\textbackslash{}n\char`\"{} \char`\"{}        map.\+add\+Layer(mapnik);\textbackslash{}n\char`\"{} \char`\"{}        map.\+add\+Layer(markers);\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}        update\+Marker();\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}        // register function to \textbackslash{}\char`\"{}move\textbackslash{}\char`\"{} marker\textbackslash{}n\char`\"{} \char`\"{}        map.\+add\+Control(touch\+Navigation);   \textbackslash{}n\char`\"{} \char`\"{}        touch\+Navigation.\+activate();\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Lon\textbackslash{}\char`\"{}).add\+Event\+Listener(\textbackslash{}\char`\"{}change\textbackslash{}\char`\"{}, update\+Marker);\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Lat\textbackslash{}\char`\"{}).add\+Event\+Listener(\textbackslash{}\char`\"{}change\textbackslash{}\char`\"{}, update\+Marker);\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}\textbackslash{}n  \char`\"{} \char`\"{}    \});\textbackslash{}n\char`\"{} \char`\"{}  $<$/script$>$\textbackslash{}n\char`\"{})
+\begin{DoxyCompactList}\small\item\em Crowdsensor html page script. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7cd09b55d8faffa1ece9b52c9a294f43}\label{main_8h_a7cd09b55d8faffa1ece9b52c9a294f43}} 
+\mbox{\hyperlink{main_8h_a7cd09b55d8faffa1ece9b52c9a294f43}{A\+C\+Text}} (cfg\+Data, \char`\"{} \char`\"{})
+\begin{DoxyCompactList}\small\item\em Crowdsensor temporary A\+C\+Text Element. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad14516a9a717a2b7a3b3c882f2b0a2a6}\label{main_8h_ad14516a9a717a2b7a3b3c882f2b0a2a6}} 
+\mbox{\hyperlink{main_8h_ad14516a9a717a2b7a3b3c882f2b0a2a6}{A\+C\+Element}} (cfg\+Body, \char`\"{}$<$style type=\textbackslash{}\char`\"{}text/css\textbackslash{}\char`\"{}$>$ \textbackslash{}n\char`\"{} \char`\"{}  input\mbox{[}type=number\mbox{]}, input\#owner \{ font-\/weight\+: 300; width\+: calc(100\% -\/ 124px); background-\/color\+: \#fff; border\+: 1px solid \#ccc; border-\/radius\+: 2px; color\+: \#444; margin\+: 8px 0 8px 0; padding\+: 10px; \}\textbackslash{}n\char`\"{} \char`\"{}  button\mbox{[}type=button\mbox{]} \{ font-\/weight\+: normal; padding\+: 8px 14px; margin\+: 12px; width\+: auto; outline\+: none; text-\/decoration\+: none; background-\/color\+: \#1b5e20; border-\/color\+: \#1b5e20; letter-\/spacing\+: 0.\+8px; color\+: \#fff; border\+: 1px solid; border-\/radius\+: 2px; font-\/size\+: 0.\+9em; \}\textbackslash{}n\char`\"{} \char`\"{}  div\#\+Open\+Layers\+\_\+\+Control\+\_\+\+Attribution\+\_\+16 \{ bottom\+: .\+2em; \}\textbackslash{}n\char`\"{} \char`\"{}$<$/style$>$\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n\char`\"{} \char`\"{}  $<$div id=\textbackslash{}\char`\"{}map\+Div\textbackslash{}\char`\"{} style=\textbackslash{}\char`\"{}height\+:250px\textbackslash{}\char`\"{}$>$$<$br/$>$$<$/div$>$$<$br/$>$\textbackslash{}n\char`\"{} \char`\"{}\textbackslash{}n\char`\"{} \char`\"{}  $<$h3$>$\+Standort des Sensors$<$/h3$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$label for=\textbackslash{}\char`\"{}input\+Address\textbackslash{}\char`\"{}$>$\+Adresse, Format\+: Straße Hausnummer, Stadt $<$/label$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$input type=\textbackslash{}\char`\"{}text\textbackslash{}\char`\"{} name=\textbackslash{}\char`\"{}input\+Address\textbackslash{}\char`\"{} id=\textbackslash{}\char`\"{}input\+Address\textbackslash{}\char`\"{} maxlength=\textbackslash{}\char`\"{}160\textbackslash{}\char`\"{} placeholder=\textbackslash{}\char`\"{}\+Adresse\textbackslash{}\char`\"{} value=\textbackslash{}\char`\"{}\textbackslash{}\char`\"{}  style=\textbackslash{}\char`\"{}width\+: calc(100\% -\/ 124px);\textbackslash{}\char`\"{}$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$span id=\textbackslash{}\char`\"{}pgeocode\textbackslash{}\char`\"{}$>$$<$/span$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$label for=\textbackslash{}\char`\"{}input\+Lon\textbackslash{}\char`\"{}$>$$<$b$>$\+Länge$<$/b$>$, Format\+: -\/3.\+703790 (für Europa im Bereich -\/15 bis 35)\+:$<$/label$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$input type=\textbackslash{}\char`\"{}number\textbackslash{}\char`\"{} name=\textbackslash{}\char`\"{}input\+Lon\textbackslash{}\char`\"{} id=\textbackslash{}\char`\"{}input\+Lon\textbackslash{}\char`\"{} min=\textbackslash{}\char`\"{}-\/180\textbackslash{}\char`\"{} max=\textbackslash{}\char`\"{}180\textbackslash{}\char`\"{} step=\textbackslash{}\char`\"{}0.\+000001\textbackslash{}\char`\"{} placeholder=\textbackslash{}\char`\"{}z.\+B. -\/3.\+703790\textbackslash{}\char`\"{} value=\textbackslash{}\char`\"{}\textbackslash{}\char`\"{} required onchange=\textbackslash{}\char`\"{}update\+Marker()\textbackslash{}\char`\"{}$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$label for=\textbackslash{}\char`\"{}input\+Lat\textbackslash{}\char`\"{}$>$$<$b$>$\+Breite$<$/b$>$, Format\+: 40.\+416775 (für Europa im Bereich 35 bis 75)\+:$<$/label$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$input type=\textbackslash{}\char`\"{}number\textbackslash{}\char`\"{} name=\textbackslash{}\char`\"{}input\+Lat\textbackslash{}\char`\"{} id=\textbackslash{}\char`\"{}input\+Lat\textbackslash{}\char`\"{} min=\textbackslash{}\char`\"{}-\/90\textbackslash{}\char`\"{} max=\textbackslash{}\char`\"{}90\textbackslash{}\char`\"{} step=\textbackslash{}\char`\"{}0.\+000001\textbackslash{}\char`\"{} placeholder=\textbackslash{}\char`\"{}z.\+B. 40.\+416775\textbackslash{}\char`\"{} value=\textbackslash{}\char`\"{}\textbackslash{}\char`\"{} required onchange=\textbackslash{}\char`\"{}update\+Marker()\textbackslash{}\char`\"{}$>$ \textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$h3$>$\+Sensoren$<$/h3$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$label for=\textbackslash{}\char`\"{}input\+Rhtsensor\textbackslash{}\char`\"{}$>$\+Temperatursensor, der benutzt werden soll$<$/label$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$select name=\textbackslash{}\char`\"{}input\+Rhtsensor\textbackslash{}\char`\"{} id=\textbackslash{}\char`\"{}input\+Rhtsensor\textbackslash{}\char`\"{}$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$option value=\textbackslash{}\char`\"{}default\textbackslash{}\char`\"{}$>$(keiner)$<$/option$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$option value=\textbackslash{}\char`\"{}\+B\+M\+E280\textbackslash{}\char`\"{}$>$\+B\+M\+E280$<$/option$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$option value=\textbackslash{}\char`\"{}\+D\+H\+T22\textbackslash{}\char`\"{}$>$\+D\+H\+T22$<$/option$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$/select$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$label for=\textbackslash{}\char`\"{}input\+Sds011id\textbackslash{}\char`\"{}$>$\+I\+D des S\+D\+S011, Feinstaub-\/\+Sensors (\+X\+X\+X\+X-\/\+X\+X\+X\+X)$<$/label$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$input type=\textbackslash{}\char`\"{}text\textbackslash{}\char`\"{}  name=\textbackslash{}\char`\"{}input\+Sds011id\textbackslash{}\char`\"{} id=\textbackslash{}\char`\"{}input\+Sds011id\textbackslash{}\char`\"{} maxlength=\textbackslash{}\char`\"{}10\textbackslash{}\char`\"{} placeholder=\textbackslash{}\char`\"{}\+X\+X\+X\+X-\/\+X\+X\+X\+X\textbackslash{}\char`\"{} value=\textbackslash{}\char`\"{}\textbackslash{}\char`\"{}$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$h3$>$\+Datenlizenz$<$/h3$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$h4$>$\+Lizenz Name$<$/h4$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$label for=\textbackslash{}\char`\"{}input\+License\textbackslash{}\char`\"{}$>$\+Unter der die von deinem Sensor aufgenommenen Daten im Smart\+A\+Qnet veröffentlicht werden sollen$<$/label$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$select name=\textbackslash{}\char`\"{}input\+License\textbackslash{}\char`\"{} id=\textbackslash{}\char`\"{}input\+License\textbackslash{}\char`\"{} onchange=\textbackslash{}\char`\"{}set\+\_\+required()\textbackslash{}\char`\"{}$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$option value=\textbackslash{}\char`\"{}\+C\+C0 1.\+0\textbackslash{}\char`\"{}$>$\+C\+C0 1.\+0 Universell$<$/option$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$option value=\textbackslash{}\char`\"{}\+C\+C B\+Y 4.\+0\textbackslash{}\char`\"{}$>$\+C\+C B\+Y 4.\+0 Namensnennung International$<$/option$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$/select$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$span style=\textbackslash{}\char`\"{}font-\/size\+: 75\%\textbackslash{}\char`\"{}$>$ Weitere Informationen\+: $<$a href=\textbackslash{}\char`\"{}\char`\"{} data1\+\_\+url\+\_\+cc0 \char`\"{}\textbackslash{}\char`\"{} id=\textbackslash{}\char`\"{}license\+\_\+url\textbackslash{}\char`\"{}$>$\char`\"{} data1\+\_\+url\+\_\+cc0 \char`\"{}$<$/a$>$$<$/span$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$script$>$\textbackslash{}n\char`\"{} \char`\"{}  function set\+\_\+required() \{\textbackslash{}n\char`\"{} \char`\"{}    var lic = document.\+get\+Element\+By\+Id(\textquotesingle{}input\+License\textquotesingle{}).\+value;\textbackslash{}n\char`\"{} \char`\"{}      if (lic == \textbackslash{}\char`\"{}\+C\+C B\+Y 4.\+0\textbackslash{}\char`\"{}) \{\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Owner\textbackslash{}\char`\"{}).\+required = true;\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}license\+\_\+url\textbackslash{}\char`\"{}).\+inner\+H\+T\+M\+L = \textbackslash{}\char`\"{}\char`\"{} data1\+\_\+url\+\_\+ccby \char`\"{}\textbackslash{}\char`\"{};\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}license\+\_\+url\textbackslash{}\char`\"{}).\+href = \textbackslash{}\char`\"{}\char`\"{} data1\+\_\+url\+\_\+ccby \char`\"{}\textbackslash{}\char`\"{};\textbackslash{}n\char`\"{} \char`\"{}      \} else \{\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}input\+Owner\textbackslash{}\char`\"{}).\+required = false;\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}license\+\_\+url\textbackslash{}\char`\"{}).\+inner\+H\+T\+M\+L = \textbackslash{}\char`\"{}\char`\"{} data1\+\_\+url\+\_\+cc0 \char`\"{}\textbackslash{}\char`\"{};\textbackslash{}n\char`\"{} \char`\"{}        document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}license\+\_\+url\textbackslash{}\char`\"{}).\+href = \textbackslash{}\char`\"{}\char`\"{} data1\+\_\+url\+\_\+cc0 \char`\"{}\textbackslash{}\char`\"{};\textbackslash{}n\char`\"{} \char`\"{}      \}\textbackslash{}n\char`\"{} \char`\"{}  \}\textbackslash{}n\char`\"{} \char`\"{}  $<$/script$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$h4$>$\+Legal Notice$<$/h4$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$label for=\textbackslash{}\char`\"{}input\+Owner\textbackslash{}\char`\"{}$>$\+Für Namensnennung in Lizenz (optional bei C\+C0)$<$/label$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$input type=\textbackslash{}\char`\"{}text\textbackslash{}\char`\"{} name=\textbackslash{}\char`\"{}input\+Owner\textbackslash{}\char`\"{} id=\textbackslash{}\char`\"{}input\+Owner\textbackslash{}\char`\"{} maxlength=\textbackslash{}\char`\"{}40\textbackslash{}\char`\"{} placeholder=\textbackslash{}\char`\"{}\+Name (optional bei C\+C0)\textbackslash{}\char`\"{} value=\textbackslash{}\char`\"{}\textbackslash{}\char`\"{}$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$input type=\textbackslash{}\char`\"{}button\textbackslash{}\char`\"{} value=\textbackslash{}\char`\"{}\+Speichern\textbackslash{}\char`\"{} name=\textbackslash{}\char`\"{}cfg\+Button\textbackslash{}\char`\"{} onclick = \textbackslash{}\char`\"{}if (confirm(\textquotesingle{}\+Daten speichern?\textquotesingle{})) \+\_\+sa(\textquotesingle{}/config\textquotesingle{})\textbackslash{}\char`\"{} method=\textbackslash{}\char`\"{}post\textbackslash{}\char`\"{}$>$\textbackslash{}n\char`\"{} \char`\"{}$<$script$>$\textbackslash{}n\char`\"{} \char`\"{}function Confirm\+Box1() \{\textbackslash{}n\char`\"{} \char`\"{}  if (confirm(\textquotesingle{}\+Daten speichern1?\textquotesingle{})) window.\+location.\+href = \textbackslash{}\char`\"{}/config\textbackslash{}\char`\"{};\textbackslash{}n\char`\"{} \char`\"{}\}\textbackslash{}n\char`\"{} \char`\"{}$<$/script$>$\textbackslash{}n\char`\"{} \char`\"{}$<$br /$>$\textbackslash{}n\char`\"{})
+\begin{DoxyCompactList}\small\item\em Crowdsensor main page html body. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7d03f66dd7454f55ad3fc0524916c93d}\label{main_8h_a7d03f66dd7454f55ad3fc0524916c93d}} 
+\mbox{\hyperlink{main_8h_a7d03f66dd7454f55ad3fc0524916c93d}{A\+C\+Element}} (cfg\+Body2, \char`\"{}$<$p$>$Hinweise\+: $<$br /$>$\textbackslash{}n\char`\"{} \char`\"{}$<$ul$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$li$>$Die Daten werden nur gespeichert, wenn sie den \textbackslash{}\char`\"{}Speichern\textbackslash{}\char`\"{} Button klicken.$<$/li$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$li$>$Die Eingabe neuer Daten überschreibt die alten Daten (z.\+B. für Standortwechsel).$<$/li$>$\textbackslash{}n\char`\"{} \char`\"{}  $<$li$>$Alle von Ihnen eingegeben Informationen werden offen in der Datenbank abrufbar sein.$<$/li$>$\textbackslash{}n\char`\"{} \char`\"{}$<$/ul$>$\textbackslash{}n\char`\"{} \char`\"{}$<$/p$>$\textbackslash{}n\char`\"{} \char`\"{}$<$script$>$\textbackslash{}n\char`\"{} \char`\"{}  window.\+add\+Event\+Listener(\textquotesingle{}load\textquotesingle{}, function()\{\textbackslash{}n\char`\"{} \char`\"{}    document.\+get\+Element\+By\+Id(\textbackslash{}\char`\"{}\+\_\+aux\textbackslash{}\char`\"{}).onkeydown = \textbackslash{}\char`\"{}return unfocus\+Form()\textbackslash{}\char`\"{}\textbackslash{}n\char`\"{} \char`\"{}  \});\textbackslash{}n\char`\"{} \char`\"{}$<$/script$>$\textbackslash{}n\char`\"{} \char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em Crowdsensor main page html body remaining part. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a72c1f96215fbb25f037c234dbd51365e}\label{main_8h_a72c1f96215fbb25f037c234dbd51365e}} 
+\mbox{\hyperlink{main_8h_a72c1f96215fbb25f037c234dbd51365e}{A\+C\+Text}} (cfgtitle, \char`\"{}\char`\"{}, \char`\"{}text-\/align\+:center;color\+:\#2f4f4f;\char`\"{})
+\begin{DoxyCompactList}\small\item\em Crowdsensor main page html main title as A\+C\+Text element. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac1cd281996f2d93f7b23cfcc2934edb5}\label{main_8h_ac1cd281996f2d93f7b23cfcc2934edb5}} 
+Auto\+Connect\+Aux \mbox{\hyperlink{main_8h_ac1cd281996f2d93f7b23cfcc2934edb5}{cfg\+Sensor\+Page\+Aux}} (\char`\"{}/\char`\"{}, \char`\"{}Configure\char`\"{}, true, \{ cfgtitle, cfg\+Script, cfg\+Body, cfg\+Data, cfg\+Body2 \})
+\begin{DoxyCompactList}\small\item\em Crowdsensor main page cfg\+Sensor\+Page\+Aux based on different Auto\+Connect Elements. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a3d955aca8968bd4e1ad980d0df15e44e}\label{main_8h_a3d955aca8968bd4e1ad980d0df15e44e}} 
+\mbox{\hyperlink{main_8h_a3d955aca8968bd4e1ad980d0df15e44e}{A\+C\+Element}} (ota\+Script, \mbox{\hyperlink{main_8h_a6719681c6a0878224435b1f6dcce627f}{ota\+Update}})
+\begin{DoxyCompactList}\small\item\em Crowdsensor O\+TA page html script. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8cef1e025c75ebbda144d09f86d00786}\label{main_8h_a8cef1e025c75ebbda144d09f86d00786}} 
+Auto\+Connect\+Aux \mbox{\hyperlink{main_8h_a8cef1e025c75ebbda144d09f86d00786}{cfg\+Update\+Page\+Aux}} (\char`\"{}/ota\+Update\char`\"{}, \char`\"{}Update\char`\"{}, true, \{ ota\+Script \})
+\begin{DoxyCompactList}\small\item\em Crowdsensor O\+TA page cfg\+Sensor\+Page\+Aux based on different Auto\+Connect Elements. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9a521613f1275c9f7d53f59d48ea1a3a}\label{main_8h_a9a521613f1275c9f7d53f59d48ea1a3a}} 
+String \mbox{\hyperlink{main_8h_a9a521613f1275c9f7d53f59d48ea1a3a}{get\+Iso\+Time}} ()
+\begin{DoxyCompactList}\small\item\em Get Standard time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a58acc281c69407e3fff9fd37ebb230c1}\label{main_8h_a58acc281c69407e3fff9fd37ebb230c1}} 
+String \mbox{\hyperlink{main_8h_a58acc281c69407e3fff9fd37ebb230c1}{get\+Hour\+Minute}} ()
+\begin{DoxyCompactList}\small\item\em Get hours from the time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6b8024ee3deccc9201e4151ec55efefb}\label{main_8h_a6b8024ee3deccc9201e4151ec55efefb}} 
+String \mbox{\hyperlink{main_8h_a6b8024ee3deccc9201e4151ec55efefb}{get\+Chip\+Id}} ()
+\begin{DoxyCompactList}\small\item\em get chip id from M\+AC only 3-\/bytes \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af8a025eb9635063f1b8c74904e2984e6}\label{main_8h_af8a025eb9635063f1b8c74904e2984e6}} 
+void \mbox{\hyperlink{main_8h_af8a025eb9635063f1b8c74904e2984e6}{handle\+Dummy}} ()
+\begin{DoxyCompactList}\small\item\em Function to handle the \href{http://}{\texttt{ http\+://}}\mbox{[}I\+P\+Address\mbox{]}/dummy response of Webserver\+::on(...). This is a dummy url for hidden tests. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_adf3bfae0fe6a4992264f5b8f0d44432f}\label{main_8h_adf3bfae0fe6a4992264f5b8f0d44432f}} 
+void \mbox{\hyperlink{main_8h_adf3bfae0fe6a4992264f5b8f0d44432f}{handle\+Dummy\+Result}} ()
+\begin{DoxyCompactList}\small\item\em Function to handle the \href{http://}{\texttt{ http\+://}}\mbox{[}I\+P\+Address\mbox{]}/dummy\+Result response of Webserver\+::on(...). This is a dummy url which is response for /dummy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a26b99cccf6c7e87054577b293e709733}\label{main_8h_a26b99cccf6c7e87054577b293e709733}} 
+void \mbox{\hyperlink{main_8h_a26b99cccf6c7e87054577b293e709733}{handle\+Config}} ()
+\begin{DoxyCompactList}\small\item\em Function to handle the \href{http://}{\texttt{ http\+://}}\mbox{[}I\+P\+Address\mbox{]}/config response of Webserver\+::on(...) after button submission. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad9a1e86fe8a8ccdeddbd435307dc8b9c}\label{main_8h_ad9a1e86fe8a8ccdeddbd435307dc8b9c}} 
+String \mbox{\hyperlink{main_8h_ad9a1e86fe8a8ccdeddbd435307dc8b9c}{handle\+Root}} (Auto\+Connect\+Aux \&aux, Page\+Argument \&args)
+\begin{DoxyCompactList}\small\item\em Function to handle the \href{http://}{\texttt{ http\+://}}\mbox{[}I\+P\+Address\mbox{]}/ response of Auto\+Connect\+::on(...) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_adb1e5699d1d537b00a661d58f303b8c0}\label{main_8h_adb1e5699d1d537b00a661d58f303b8c0}} 
+void \mbox{\hyperlink{main_8h_adb1e5699d1d537b00a661d58f303b8c0}{ota\+Update\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Function to handle the \href{http://}{\texttt{ http\+://}}\mbox{[}I\+P\+Address\mbox{]}/ota\+Update H\+T\+T\+P\+\_\+\+P\+O\+ST response of Webserver\+::on(...) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac18409cbc727fcbb81831d42abceffc2}\label{main_8h_ac18409cbc727fcbb81831d42abceffc2}} 
+void \mbox{\hyperlink{main_8h_ac18409cbc727fcbb81831d42abceffc2}{update\+Handler}} (void)
+\begin{DoxyCompactList}\small\item\em Function to handle the \href{http://}{\texttt{ http\+://}}\mbox{[}I\+P\+Address\mbox{]}/update H\+T\+T\+P\+\_\+\+P\+O\+ST response of Webserver\+::on(...) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a27d0e99a6ba203be7c65cd32285853c2}\label{main_8h_a27d0e99a6ba203be7c65cd32285853c2}} 
+void \mbox{\hyperlink{main_8h_a27d0e99a6ba203be7c65cd32285853c2}{update\+Handler\+Response}} (void)
+\begin{DoxyCompactList}\small\item\em Function to handle the \href{http://}{\texttt{ http\+://}}\mbox{[}I\+P\+Address\mbox{]}/update H\+T\+T\+P\+\_\+\+G\+ET response of Webserver\+::on(...) \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{main_8h_aab371021062944a795900eae5225f4b7}{to\+H\+E\+X\+S\+HA}} (String serial)
+\begin{DoxyCompactList}\small\item\em create a H\+A\+SH using S\+H\+A-\/1 \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{main_8h_a036b6be2dada2e25de5ba011ecf6e6d1}{create\+Entity}} (String url, String contents)
+\begin{DoxyCompactList}\small\item\em Create (H\+T\+TP Post) entities. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{main_8h_a4aab1f67b50ce6481e7ac83dfff5b13d}{patch\+Entity}} (String url, String contents)
+\begin{DoxyCompactList}\small\item\em Patch (H\+T\+TP Patch) entities. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8h_ae6c120555243b2518a083c9a81912c50}{get\+Entity}} (String url)
+\begin{DoxyCompactList}\small\item\em Get the H\+T\+TP code (H\+T\+TP Get) from a server and print the response. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{main_8h_a42e8beb4deb7bb6e43882dd9f6b9a3a7}{get\+Entity\+Response}} (String url)
+\begin{DoxyCompactList}\small\item\em Get the H\+T\+TP response (H\+T\+TP Get) from a server and print the response. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{main_8h_a24fe5bb6b476d220ec484ce84ee1dee4}{create\+Or\+Update\+Entities}} (String url, String contents, String id, boolean do\+Patch)
+\begin{DoxyCompactList}\small\item\em Create (H\+T\+TP Post) if entities does exist and patch (H\+T\+TP Patch) if it already exists. \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{main_8h_a45966fcc26cfd9cdd7c783fdbcea88cc}{create\+Or\+Patch\+Entities}} (String entity, String json, String iot\+Id)
+\begin{DoxyCompactList}\small\item\em Create (H\+T\+TP Post) if entities does exist and patch (H\+T\+TP Patch) the properties if it already exists. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{main_8h_a2bc07c34ce88e61fa0974a4624441358}{create\+Entities}} ()
+\begin{DoxyCompactList}\small\item\em create different entities like Thing, Sensor, Datastream, Observed\+Properties, \& Location and Patch if not already linked \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_ac9ef7d3d153097fbb69d59b22c2a91fa}{post\+Observation}} (int datastream, String phenomenon\+Time, String result\+Time, double result)
+\begin{DoxyCompactList}\small\item\em Post Observation for sensed vaules of P\+M25, P\+M10, humidity, temperature and Pressure (H\+T\+TP Post) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{main_8h_af5d6cb985ffb3bfead1239c709e39804}\label{main_8h_af5d6cb985ffb3bfead1239c709e39804}} 
+const int \mbox{\hyperlink{main_8h_af5d6cb985ffb3bfead1239c709e39804}{precision}} = 6
+\begin{DoxyCompactList}\small\item\em Precision for location coordinates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8f22c3603d2f8003836857749e75856d}\label{main_8h_a8f22c3603d2f8003836857749e75856d}} 
+String \mbox{\hyperlink{main_8h_a8f22c3603d2f8003836857749e75856d}{lic\+Type}}
+\begin{DoxyCompactList}\small\item\em License Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aaefa1750ae3f72fc16343bb7d5edcbd6}\label{main_8h_aaefa1750ae3f72fc16343bb7d5edcbd6}} 
+String \mbox{\hyperlink{main_8h_aaefa1750ae3f72fc16343bb7d5edcbd6}{lic\+Owner}}
+\begin{DoxyCompactList}\small\item\em License Owner. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a85d0103e29936b4db1cdfaaa325e92ed}\label{main_8h_a85d0103e29936b4db1cdfaaa325e92ed}} 
+String \mbox{\hyperlink{main_8h_a85d0103e29936b4db1cdfaaa325e92ed}{lic\+Url}}
+\begin{DoxyCompactList}\small\item\em License Url. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad40e80087c9c9e699b38e495eddc6a55}\label{main_8h_ad40e80087c9c9e699b38e495eddc6a55}} 
+String \mbox{\hyperlink{main_8h_ad40e80087c9c9e699b38e495eddc6a55}{loc\+Name}}
+\begin{DoxyCompactList}\small\item\em Location Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1f98a09265d0173fc6939ab87fdc8a44}\label{main_8h_a1f98a09265d0173fc6939ab87fdc8a44}} 
+String \mbox{\hyperlink{main_8h_a1f98a09265d0173fc6939ab87fdc8a44}{loc\+Desc}}
+\begin{DoxyCompactList}\small\item\em Location Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aa35cee26d3a646e6fb1cf38cc8dc001d}\label{main_8h_aa35cee26d3a646e6fb1cf38cc8dc001d}} 
+String \mbox{\hyperlink{main_8h_aa35cee26d3a646e6fb1cf38cc8dc001d}{loc\+Enc}}
+\begin{DoxyCompactList}\small\item\em Location Encoding Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a3a824641be793339453465382fafc0f7}\label{main_8h_a3a824641be793339453465382fafc0f7}} 
+String \mbox{\hyperlink{main_8h_a3a824641be793339453465382fafc0f7}{loc\+Typ}}
+\begin{DoxyCompactList}\small\item\em Location Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a06ea973a2411959f99b2dc1da42eac5b}\label{main_8h_a06ea973a2411959f99b2dc1da42eac5b}} 
+String \mbox{\hyperlink{main_8h_a06ea973a2411959f99b2dc1da42eac5b}{loc\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Location I\+OT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a0d3816c25c02448f4eb0cda0df510f5f}\label{main_8h_a0d3816c25c02448f4eb0cda0df510f5f}} 
+String \mbox{\hyperlink{main_8h_a0d3816c25c02448f4eb0cda0df510f5f}{loc\+Cord}}
+\begin{DoxyCompactList}\small\item\em Location Coordinates. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a4a149221426755e45f49b58c2797c1fb}\label{main_8h_a4a149221426755e45f49b58c2797c1fb}} 
+String \mbox{\hyperlink{main_8h_a4a149221426755e45f49b58c2797c1fb}{loc\+Json}}
+\begin{DoxyCompactList}\small\item\em Location J\+S\+ON message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1f1e61990b4e832c1017b1066cb694a9}\label{main_8h_a1f1e61990b4e832c1017b1066cb694a9}} 
+String \mbox{\hyperlink{main_8h_a1f1e61990b4e832c1017b1066cb694a9}{th\+Name}}
+\begin{DoxyCompactList}\small\item\em Thing Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a11b0b7f879a6f30505413b1c25faa7f7}\label{main_8h_a11b0b7f879a6f30505413b1c25faa7f7}} 
+String \mbox{\hyperlink{main_8h_a11b0b7f879a6f30505413b1c25faa7f7}{th\+Desc}}
+\begin{DoxyCompactList}\small\item\em Thing Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_afdd4c29e2b8d60bc33e8a76b77d76a58}\label{main_8h_afdd4c29e2b8d60bc33e8a76b77d76a58}} 
+String \mbox{\hyperlink{main_8h_afdd4c29e2b8d60bc33e8a76b77d76a58}{th\+Hw\+Date}}
+\begin{DoxyCompactList}\small\item\em Thing Hardware Revision Date. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aafcb62331db798ef75a8987a03d2aaf8}\label{main_8h_aafcb62331db798ef75a8987a03d2aaf8}} 
+String \mbox{\hyperlink{main_8h_aafcb62331db798ef75a8987a03d2aaf8}{th\+Hw\+Version}}
+\begin{DoxyCompactList}\small\item\em Thing Hardware Revision Version. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a2bd25165cf851e9cf6a448d07c852439}\label{main_8h_a2bd25165cf851e9cf6a448d07c852439}} 
+String \mbox{\hyperlink{main_8h_a2bd25165cf851e9cf6a448d07c852439}{th\+Sw\+Date}}
+\begin{DoxyCompactList}\small\item\em Thing Software Version Date. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac2f05c5c6261ec54992f47e9adffc9e9}\label{main_8h_ac2f05c5c6261ec54992f47e9adffc9e9}} 
+String \mbox{\hyperlink{main_8h_ac2f05c5c6261ec54992f47e9adffc9e9}{th\+Sw\+Version}}
+\begin{DoxyCompactList}\small\item\em Thing Software Version. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5a6f76e6c9f79b4fbe49cb2d9d064eb5}\label{main_8h_a5a6f76e6c9f79b4fbe49cb2d9d064eb5}} 
+String \mbox{\hyperlink{main_8h_a5a6f76e6c9f79b4fbe49cb2d9d064eb5}{th\+Hw\+Id}}
+\begin{DoxyCompactList}\small\item\em Thing Hardware ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a82f9dbc52054aed4cb1414eb3a8b3042}\label{main_8h_a82f9dbc52054aed4cb1414eb3a8b3042}} 
+String \mbox{\hyperlink{main_8h_a82f9dbc52054aed4cb1414eb3a8b3042}{th\+Short\+Name}}
+\begin{DoxyCompactList}\small\item\em Thing Short Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8e0896b6991306060b1c7453081c8e9d}\label{main_8h_a8e0896b6991306060b1c7453081c8e9d}} 
+String \mbox{\hyperlink{main_8h_a8e0896b6991306060b1c7453081c8e9d}{th\+Op\+Domain}}
+\begin{DoxyCompactList}\small\item\em Thing Operater Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a3704185ed446a32241c3ddbd4b157623}\label{main_8h_a3704185ed446a32241c3ddbd4b157623}} 
+String \mbox{\hyperlink{main_8h_a3704185ed446a32241c3ddbd4b157623}{th\+Id}}
+\begin{DoxyCompactList}\small\item\em Thing Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a98504c14a1c53901c4816f08c29292d7}\label{main_8h_a98504c14a1c53901c4816f08c29292d7}} 
+String \mbox{\hyperlink{main_8h_a98504c14a1c53901c4816f08c29292d7}{th\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Thing I\+OT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab586b584505d3da79ff0281c5b990eb0}\label{main_8h_ab586b584505d3da79ff0281c5b990eb0}} 
+String \mbox{\hyperlink{main_8h_ab586b584505d3da79ff0281c5b990eb0}{th\+Json}}
+\begin{DoxyCompactList}\small\item\em Thing J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5103cfb9629a2bf2a373a0adf8d7dc50}\label{main_8h_a5103cfb9629a2bf2a373a0adf8d7dc50}} 
+String \mbox{\hyperlink{main_8h_a5103cfb9629a2bf2a373a0adf8d7dc50}{pr\+Json}}
+\begin{DoxyCompactList}\small\item\em Thing Properties J\+S\+ON message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a824142a5d4120861ade084b4d39a2d67}\label{main_8h_a824142a5d4120861ade084b4d39a2d67}} 
+String \mbox{\hyperlink{main_8h_a824142a5d4120861ade084b4d39a2d67}{sds\+Serial}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 Serial No. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aceffc4e5c1f31245989062498d58c5b4}\label{main_8h_aceffc4e5c1f31245989062498d58c5b4}} 
+String \mbox{\hyperlink{main_8h_aceffc4e5c1f31245989062498d58c5b4}{sds\+Name}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a4828be53dd8d92fdbdab439ec2abbccf}\label{main_8h_a4828be53dd8d92fdbdab439ec2abbccf}} 
+String \mbox{\hyperlink{main_8h_a4828be53dd8d92fdbdab439ec2abbccf}{sds\+Desc}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a236bab6d7bb30ee4f0d494691b559e4b}\label{main_8h_a236bab6d7bb30ee4f0d494691b559e4b}} 
+String \mbox{\hyperlink{main_8h_a236bab6d7bb30ee4f0d494691b559e4b}{sds\+Enc}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 Encoding Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7ad52d86bbef24d12b0f207d4df1f170}\label{main_8h_a7ad52d86bbef24d12b0f207d4df1f170}} 
+String \mbox{\hyperlink{main_8h_a7ad52d86bbef24d12b0f207d4df1f170}{sds\+Data\+Url}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 Data\+Sheet U\+RL. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8899f9516e513c9c6292242a05b77702}\label{main_8h_a8899f9516e513c9c6292242a05b77702}} 
+String \mbox{\hyperlink{main_8h_a8899f9516e513c9c6292242a05b77702}{sds\+Short\+Name}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 Short Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5acbdf9b341bf3b2035e44a50a911dc6}\label{main_8h_a5acbdf9b341bf3b2035e44a50a911dc6}} 
+String \mbox{\hyperlink{main_8h_a5acbdf9b341bf3b2035e44a50a911dc6}{sds\+Man\+Domain}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 Menufacture Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5ce356dd02dea0a0bc3ca6bf6955f6ce}\label{main_8h_a5ce356dd02dea0a0bc3ca6bf6955f6ce}} 
+String \mbox{\hyperlink{main_8h_a5ce356dd02dea0a0bc3ca6bf6955f6ce}{sds\+Id}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7563b3b31074e29ad9385133b4de6f17}\label{main_8h_a7563b3b31074e29ad9385133b4de6f17}} 
+String \mbox{\hyperlink{main_8h_a7563b3b31074e29ad9385133b4de6f17}{sds\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 I\+OT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a77935fdf2a43574301e79fefc8eeaa63}\label{main_8h_a77935fdf2a43574301e79fefc8eeaa63}} 
+String \mbox{\hyperlink{main_8h_a77935fdf2a43574301e79fefc8eeaa63}{sds\+Meta}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 Meta D\+A\+TA. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aeea9509f498c668fdc208d112af60104}\label{main_8h_aeea9509f498c668fdc208d112af60104}} 
+String \mbox{\hyperlink{main_8h_aeea9509f498c668fdc208d112af60104}{sds\+Json}}
+\begin{DoxyCompactList}\small\item\em S\+D\+S011 J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1f5df443039e5d115d859069dcc84ac0}\label{main_8h_a1f5df443039e5d115d859069dcc84ac0}} 
+String \mbox{\hyperlink{main_8h_a1f5df443039e5d115d859069dcc84ac0}{bme\+Serial}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 Serial No. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_adcc0ec4cebf4dac447047e659578793b}\label{main_8h_adcc0ec4cebf4dac447047e659578793b}} 
+String \mbox{\hyperlink{main_8h_adcc0ec4cebf4dac447047e659578793b}{bme\+Name}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7d61f54999548e1ed561f2727e571adb}\label{main_8h_a7d61f54999548e1ed561f2727e571adb}} 
+String \mbox{\hyperlink{main_8h_a7d61f54999548e1ed561f2727e571adb}{bme\+Desc}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a2b364a34f4cabacb35d8907429c70934}\label{main_8h_a2b364a34f4cabacb35d8907429c70934}} 
+String \mbox{\hyperlink{main_8h_a2b364a34f4cabacb35d8907429c70934}{bme\+Enc}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 Encoding Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad0829d3ec4ecaa689b25fffcb1d484b6}\label{main_8h_ad0829d3ec4ecaa689b25fffcb1d484b6}} 
+String \mbox{\hyperlink{main_8h_ad0829d3ec4ecaa689b25fffcb1d484b6}{bme\+Data\+Url}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 Datasheet Url. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1e6c2571ce3bdc0a8afecbc7d0995bf1}\label{main_8h_a1e6c2571ce3bdc0a8afecbc7d0995bf1}} 
+String \mbox{\hyperlink{main_8h_a1e6c2571ce3bdc0a8afecbc7d0995bf1}{bme\+Short\+Name}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 Short Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac34fe1d130b157bff8cb18b5fe870fe8}\label{main_8h_ac34fe1d130b157bff8cb18b5fe870fe8}} 
+String \mbox{\hyperlink{main_8h_ac34fe1d130b157bff8cb18b5fe870fe8}{bme\+Man\+Domain}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 Manufacture Domain. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a14633525696eea3088a561a2aa85537e}\label{main_8h_a14633525696eea3088a561a2aa85537e}} 
+String \mbox{\hyperlink{main_8h_a14633525696eea3088a561a2aa85537e}{bme\+Id}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a09de825e70f803eeabc49705908782c2}\label{main_8h_a09de825e70f803eeabc49705908782c2}} 
+String \mbox{\hyperlink{main_8h_a09de825e70f803eeabc49705908782c2}{bme\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 I\+OT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac0fdbc1eb8fb92b8178f6cb0a674eea8}\label{main_8h_ac0fdbc1eb8fb92b8178f6cb0a674eea8}} 
+String \mbox{\hyperlink{main_8h_ac0fdbc1eb8fb92b8178f6cb0a674eea8}{bme\+Meta}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 Meta\+Data. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a458ef0ed45ab15b01af3bcbd95df5fc0}\label{main_8h_a458ef0ed45ab15b01af3bcbd95df5fc0}} 
+String \mbox{\hyperlink{main_8h_a458ef0ed45ab15b01af3bcbd95df5fc0}{bme\+Json}}
+\begin{DoxyCompactList}\small\item\em B\+M\+E280 J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9640fc56c78400e1c993805ceab849da}\label{main_8h_a9640fc56c78400e1c993805ceab849da}} 
+String \mbox{\hyperlink{main_8h_a9640fc56c78400e1c993805ceab849da}{dht\+Serial}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 Serial No. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a769c995ea2670a985cb726f9e1796932}\label{main_8h_a769c995ea2670a985cb726f9e1796932}} 
+String \mbox{\hyperlink{main_8h_a769c995ea2670a985cb726f9e1796932}{dht\+Name}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a3c4b02878be630cf85d02b6c48669cd5}\label{main_8h_a3c4b02878be630cf85d02b6c48669cd5}} 
+String \mbox{\hyperlink{main_8h_a3c4b02878be630cf85d02b6c48669cd5}{dht\+Desc}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7875c1c0a7654c84a956250874db8dd4}\label{main_8h_a7875c1c0a7654c84a956250874db8dd4}} 
+String \mbox{\hyperlink{main_8h_a7875c1c0a7654c84a956250874db8dd4}{dht\+Enc}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 Encoding Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af572c7c505f96f984582a1c1e6347c2d}\label{main_8h_af572c7c505f96f984582a1c1e6347c2d}} 
+String \mbox{\hyperlink{main_8h_af572c7c505f96f984582a1c1e6347c2d}{dht\+Data\+Url}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 Datasheet Url. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aa917eb7c406e1df77518c11dde4f6195}\label{main_8h_aa917eb7c406e1df77518c11dde4f6195}} 
+String \mbox{\hyperlink{main_8h_aa917eb7c406e1df77518c11dde4f6195}{dht\+Short\+Name}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 Short Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a0264d7ddf67673b80637b595c821303d}\label{main_8h_a0264d7ddf67673b80637b595c821303d}} 
+String \mbox{\hyperlink{main_8h_a0264d7ddf67673b80637b595c821303d}{dht\+Man\+Domain}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 Manufacture Domain. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a56340b526081a077e23ad4bba344eede}\label{main_8h_a56340b526081a077e23ad4bba344eede}} 
+String \mbox{\hyperlink{main_8h_a56340b526081a077e23ad4bba344eede}{dht\+Id}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 S\+Imple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_addc4ae96db6a87911d1d43bcbed8928e}\label{main_8h_addc4ae96db6a87911d1d43bcbed8928e}} 
+String \mbox{\hyperlink{main_8h_addc4ae96db6a87911d1d43bcbed8928e}{dht\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 I\+OT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1a5e09660c3642bd91cf8319c1ba226e}\label{main_8h_a1a5e09660c3642bd91cf8319c1ba226e}} 
+String \mbox{\hyperlink{main_8h_a1a5e09660c3642bd91cf8319c1ba226e}{dht\+Meta}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 Metadata. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_afe2af66f5dae313a5430ca6716e63780}\label{main_8h_afe2af66f5dae313a5430ca6716e63780}} 
+String \mbox{\hyperlink{main_8h_afe2af66f5dae313a5430ca6716e63780}{dht\+Json}}
+\begin{DoxyCompactList}\small\item\em D\+H\+T22 J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_abdeccc51eeb9486719bc8ab34fa68256}\label{main_8h_abdeccc51eeb9486719bc8ab34fa68256}} 
+String \mbox{\hyperlink{main_8h_abdeccc51eeb9486719bc8ab34fa68256}{op\+P\+M10\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a3f13533b3a67d0cb887d231cf8664dcc}\label{main_8h_a3f13533b3a67d0cb887d231cf8664dcc}} 
+String \mbox{\hyperlink{main_8h_a3f13533b3a67d0cb887d231cf8664dcc}{op\+P\+M10\+Desc}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a468d8285c92d1ec2339626e59456c07c}\label{main_8h_a468d8285c92d1ec2339626e59456c07c}} 
+String \mbox{\hyperlink{main_8h_a468d8285c92d1ec2339626e59456c07c}{op\+P\+M10\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a0a9ae48a404a56c87fa6b389a0779c56}\label{main_8h_a0a9ae48a404a56c87fa6b389a0779c56}} 
+String \mbox{\hyperlink{main_8h_a0a9ae48a404a56c87fa6b389a0779c56}{op\+P\+M10\+Short\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 Short Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1f73bec418300289167edd07d050e3f8}\label{main_8h_a1f73bec418300289167edd07d050e3f8}} 
+String \mbox{\hyperlink{main_8h_a1f73bec418300289167edd07d050e3f8}{op\+P\+M10\+Short\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 Short Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a827b60d5437aa402c0050be6b66dc6c1}\label{main_8h_a827b60d5437aa402c0050be6b66dc6c1}} 
+String \mbox{\hyperlink{main_8h_a827b60d5437aa402c0050be6b66dc6c1}{op\+P\+M10\+UoM}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 Unit of Measurement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad63885175080600ba49eb48b0d9f94d7}\label{main_8h_ad63885175080600ba49eb48b0d9f94d7}} 
+String \mbox{\hyperlink{main_8h_ad63885175080600ba49eb48b0d9f94d7}{op\+P\+M10\+Sym}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1470f1fce87e09bb8f8b300e710fcf8f}\label{main_8h_a1470f1fce87e09bb8f8b300e710fcf8f}} 
+String \mbox{\hyperlink{main_8h_a1470f1fce87e09bb8f8b300e710fcf8f}{op\+P\+M10\+Con\+Def}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 UoM Convention Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab285fb2b8d54fce26dba973118aab348}\label{main_8h_ab285fb2b8d54fce26dba973118aab348}} 
+String \mbox{\hyperlink{main_8h_ab285fb2b8d54fce26dba973118aab348}{op\+P\+M10\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a67919edf07bca4b19ac4d0e0e8cc6931}\label{main_8h_a67919edf07bca4b19ac4d0e0e8cc6931}} 
+String \mbox{\hyperlink{main_8h_a67919edf07bca4b19ac4d0e0e8cc6931}{op\+P\+M10\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a337d864904ec9c76bb80d632679d84fd}\label{main_8h_a337d864904ec9c76bb80d632679d84fd}} 
+String \mbox{\hyperlink{main_8h_a337d864904ec9c76bb80d632679d84fd}{op\+P\+M10\+Json}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M10 J\+S\+ON message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af13d4166a41b126c6d05f32433f7face}\label{main_8h_af13d4166a41b126c6d05f32433f7face}} 
+String \mbox{\hyperlink{main_8h_af13d4166a41b126c6d05f32433f7face}{op\+P\+M25\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5640bbab120c2579a5eac2e6ffd65f59}\label{main_8h_a5640bbab120c2579a5eac2e6ffd65f59}} 
+String \mbox{\hyperlink{main_8h_a5640bbab120c2579a5eac2e6ffd65f59}{op\+P\+M25\+Desc}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aa1e42c31ba2dafa727b89f46f9b8509e}\label{main_8h_aa1e42c31ba2dafa727b89f46f9b8509e}} 
+String \mbox{\hyperlink{main_8h_aa1e42c31ba2dafa727b89f46f9b8509e}{op\+P\+M25\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a11093b6904b3f004006e33cc38adc166}\label{main_8h_a11093b6904b3f004006e33cc38adc166}} 
+String \mbox{\hyperlink{main_8h_a11093b6904b3f004006e33cc38adc166}{op\+P\+M25\+Short\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 Short Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6b7d7806b8e968348036b8cac91e2b06}\label{main_8h_a6b7d7806b8e968348036b8cac91e2b06}} 
+String \mbox{\hyperlink{main_8h_a6b7d7806b8e968348036b8cac91e2b06}{op\+P\+M25\+Short\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 Short Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a71f593217b3c10767d8e1b16ec830912}\label{main_8h_a71f593217b3c10767d8e1b16ec830912}} 
+String \mbox{\hyperlink{main_8h_a71f593217b3c10767d8e1b16ec830912}{op\+P\+M25\+UoM}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 Unit of Measurement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9ee28ef7a14472aea9e27e4ad4696647}\label{main_8h_a9ee28ef7a14472aea9e27e4ad4696647}} 
+String \mbox{\hyperlink{main_8h_a9ee28ef7a14472aea9e27e4ad4696647}{op\+P\+M25\+Sym}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a4b0e59427a948c5f190592d5ebe9dfaf}\label{main_8h_a4b0e59427a948c5f190592d5ebe9dfaf}} 
+String \mbox{\hyperlink{main_8h_a4b0e59427a948c5f190592d5ebe9dfaf}{op\+P\+M25\+Con\+Def}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 UoM Convention Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8218aa2d6272631c50ff3255db161256}\label{main_8h_a8218aa2d6272631c50ff3255db161256}} 
+String \mbox{\hyperlink{main_8h_a8218aa2d6272631c50ff3255db161256}{op\+P\+M25\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9ea1d3a9bb9b25b8ecf2f3d9d1e013eb}\label{main_8h_a9ea1d3a9bb9b25b8ecf2f3d9d1e013eb}} 
+String \mbox{\hyperlink{main_8h_a9ea1d3a9bb9b25b8ecf2f3d9d1e013eb}{op\+P\+M25\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6b2c48ac35869fba893f29830bf4af5e}\label{main_8h_a6b2c48ac35869fba893f29830bf4af5e}} 
+String \mbox{\hyperlink{main_8h_a6b2c48ac35869fba893f29830bf4af5e}{op\+P\+M25\+Json}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property P\+M2.\+5 J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a98bbc11b3a139cfda4b4fd13a09d21dd}\label{main_8h_a98bbc11b3a139cfda4b4fd13a09d21dd}} 
+String \mbox{\hyperlink{main_8h_a98bbc11b3a139cfda4b4fd13a09d21dd}{op\+Hm\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a989ddbf06349351b46bc6bd343eb6b9b}\label{main_8h_a989ddbf06349351b46bc6bd343eb6b9b}} 
+String \mbox{\hyperlink{main_8h_a989ddbf06349351b46bc6bd343eb6b9b}{op\+Hm\+Desc}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a4aaf0c090f43cc4ad4eb868bc37387b5}\label{main_8h_a4aaf0c090f43cc4ad4eb868bc37387b5}} 
+String \mbox{\hyperlink{main_8h_a4aaf0c090f43cc4ad4eb868bc37387b5}{op\+Hm\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aeb34b2e83492fc2f4b1df5d2f031ae3b}\label{main_8h_aeb34b2e83492fc2f4b1df5d2f031ae3b}} 
+String \mbox{\hyperlink{main_8h_aeb34b2e83492fc2f4b1df5d2f031ae3b}{op\+Hm\+Short\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity Short Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ae154129724d2533691479edd26ab01aa}\label{main_8h_ae154129724d2533691479edd26ab01aa}} 
+String \mbox{\hyperlink{main_8h_ae154129724d2533691479edd26ab01aa}{op\+Hm\+Short\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity Short Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a697a64bd1eb21f1d9ce80257a0c3582c}\label{main_8h_a697a64bd1eb21f1d9ce80257a0c3582c}} 
+String \mbox{\hyperlink{main_8h_a697a64bd1eb21f1d9ce80257a0c3582c}{op\+Hm\+UoM}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity Unit of Measurement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6b3977ae363df0c32fdd96f112a7929d}\label{main_8h_a6b3977ae363df0c32fdd96f112a7929d}} 
+String \mbox{\hyperlink{main_8h_a6b3977ae363df0c32fdd96f112a7929d}{op\+Hm\+Sym}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1f9b348068c71e54a964d83512be58b8}\label{main_8h_a1f9b348068c71e54a964d83512be58b8}} 
+String \mbox{\hyperlink{main_8h_a1f9b348068c71e54a964d83512be58b8}{op\+Hm\+Con\+Def}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity UoM Convention Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a3aa6533d28454401c84dbe948e2bfb46}\label{main_8h_a3aa6533d28454401c84dbe948e2bfb46}} 
+String \mbox{\hyperlink{main_8h_a3aa6533d28454401c84dbe948e2bfb46}{op\+Hm\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a39a00962dffe9eab67b643b1346823b8}\label{main_8h_a39a00962dffe9eab67b643b1346823b8}} 
+String \mbox{\hyperlink{main_8h_a39a00962dffe9eab67b643b1346823b8}{op\+Hm\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aa4733417d7bfe6ac8550767e49c49adb}\label{main_8h_aa4733417d7bfe6ac8550767e49c49adb}} 
+String \mbox{\hyperlink{main_8h_aa4733417d7bfe6ac8550767e49c49adb}{op\+Hm\+Json}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Humidity J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8d14f4d02f7e89884d008d385626c3cb}\label{main_8h_a8d14f4d02f7e89884d008d385626c3cb}} 
+String \mbox{\hyperlink{main_8h_a8d14f4d02f7e89884d008d385626c3cb}{op\+Tm\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a563f15833bf5cedff25274d082861657}\label{main_8h_a563f15833bf5cedff25274d082861657}} 
+String \mbox{\hyperlink{main_8h_a563f15833bf5cedff25274d082861657}{op\+Tm\+Desc}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a60d5f60aa5bf6e98602dfc8e1e358765}\label{main_8h_a60d5f60aa5bf6e98602dfc8e1e358765}} 
+String \mbox{\hyperlink{main_8h_a60d5f60aa5bf6e98602dfc8e1e358765}{op\+Tm\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_affa20024a48fbd7c8ea777f03f0bee54}\label{main_8h_affa20024a48fbd7c8ea777f03f0bee54}} 
+String \mbox{\hyperlink{main_8h_affa20024a48fbd7c8ea777f03f0bee54}{op\+Tm\+Short\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature Short Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_accee8fdb1b782505f9dfb33076aeb658}\label{main_8h_accee8fdb1b782505f9dfb33076aeb658}} 
+String \mbox{\hyperlink{main_8h_accee8fdb1b782505f9dfb33076aeb658}{op\+Tm\+Short\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature Short Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ae573730418600e9c6c4eeeef3f78cdd8}\label{main_8h_ae573730418600e9c6c4eeeef3f78cdd8}} 
+String \mbox{\hyperlink{main_8h_ae573730418600e9c6c4eeeef3f78cdd8}{op\+Tm\+UoM}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature Unit of Measurement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8a831190a8ef89e2dda6d25ede1a65c8}\label{main_8h_a8a831190a8ef89e2dda6d25ede1a65c8}} 
+String \mbox{\hyperlink{main_8h_a8a831190a8ef89e2dda6d25ede1a65c8}{op\+Tm\+Sym}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6fd9a7c9b6937d8b417ce1dc5ef57090}\label{main_8h_a6fd9a7c9b6937d8b417ce1dc5ef57090}} 
+String \mbox{\hyperlink{main_8h_a6fd9a7c9b6937d8b417ce1dc5ef57090}{op\+Tm\+Con\+Def}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature UoM Convention Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a76095c1f20ccdab8089a04121321e6a4}\label{main_8h_a76095c1f20ccdab8089a04121321e6a4}} 
+String \mbox{\hyperlink{main_8h_a76095c1f20ccdab8089a04121321e6a4}{op\+Tm\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a252805686d9ac92b251ab82407e147d2}\label{main_8h_a252805686d9ac92b251ab82407e147d2}} 
+String \mbox{\hyperlink{main_8h_a252805686d9ac92b251ab82407e147d2}{op\+Tm\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a399b19c61386b36cd5be9907037d59a3}\label{main_8h_a399b19c61386b36cd5be9907037d59a3}} 
+String \mbox{\hyperlink{main_8h_a399b19c61386b36cd5be9907037d59a3}{op\+Tm\+Json}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Temperature J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac087bd66626544d91c535b9e4c11aab0}\label{main_8h_ac087bd66626544d91c535b9e4c11aab0}} 
+String \mbox{\hyperlink{main_8h_ac087bd66626544d91c535b9e4c11aab0}{op\+Pr\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9c1a9e6eaaf25a291508ebb8a3e0a90c}\label{main_8h_a9c1a9e6eaaf25a291508ebb8a3e0a90c}} 
+String \mbox{\hyperlink{main_8h_a9c1a9e6eaaf25a291508ebb8a3e0a90c}{op\+Pr\+Desc}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac2e93bcb65db6034fe7a26338d234b01}\label{main_8h_ac2e93bcb65db6034fe7a26338d234b01}} 
+String \mbox{\hyperlink{main_8h_ac2e93bcb65db6034fe7a26338d234b01}{op\+Pr\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a38594f641b27846e19a0fefcee23ff07}\label{main_8h_a38594f641b27846e19a0fefcee23ff07}} 
+String \mbox{\hyperlink{main_8h_a38594f641b27846e19a0fefcee23ff07}{op\+Pr\+Short\+Defi}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure Short Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a2ab943d650e43c63c68195278e063ccc}\label{main_8h_a2ab943d650e43c63c68195278e063ccc}} 
+String \mbox{\hyperlink{main_8h_a2ab943d650e43c63c68195278e063ccc}{op\+Pr\+Short\+Name}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure Short Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a2f11d4afa49e73db8bb4489777c40737}\label{main_8h_a2f11d4afa49e73db8bb4489777c40737}} 
+String \mbox{\hyperlink{main_8h_a2f11d4afa49e73db8bb4489777c40737}{op\+Pr\+UoM}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure Unit of Measurement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af2b20585decc34fb11870ea6c3fe3f6e}\label{main_8h_af2b20585decc34fb11870ea6c3fe3f6e}} 
+String \mbox{\hyperlink{main_8h_af2b20585decc34fb11870ea6c3fe3f6e}{op\+Pr\+Sym}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ada3bdb458fd8127f69a36715f2489c82}\label{main_8h_ada3bdb458fd8127f69a36715f2489c82}} 
+String \mbox{\hyperlink{main_8h_ada3bdb458fd8127f69a36715f2489c82}{op\+Pr\+Con\+Def}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure UoM Convention Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a25c9d1a2a61f4a9faecf5a121ea2c037}\label{main_8h_a25c9d1a2a61f4a9faecf5a121ea2c037}} 
+String \mbox{\hyperlink{main_8h_a25c9d1a2a61f4a9faecf5a121ea2c037}{op\+Pr\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a474d08f77dad614de75dffcc8ace09a8}\label{main_8h_a474d08f77dad614de75dffcc8ace09a8}} 
+String \mbox{\hyperlink{main_8h_a474d08f77dad614de75dffcc8ace09a8}{op\+Pr\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab8307b0185f087327fb332af935e8171}\label{main_8h_ab8307b0185f087327fb332af935e8171}} 
+String \mbox{\hyperlink{main_8h_ab8307b0185f087327fb332af935e8171}{op\+Pr\+Json}}
+\begin{DoxyCompactList}\small\item\em Observed\+Property Pressure J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a2d045a25d7d9e48035e4ef23763b7578}\label{main_8h_a2d045a25d7d9e48035e4ef23763b7578}} 
+String \mbox{\hyperlink{main_8h_a2d045a25d7d9e48035e4ef23763b7578}{ds\+P\+M10\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M10 Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a0a88aaf7c2fa14e6dcd87145a6c4b14f}\label{main_8h_a0a88aaf7c2fa14e6dcd87145a6c4b14f}} 
+String \mbox{\hyperlink{main_8h_a0a88aaf7c2fa14e6dcd87145a6c4b14f}{ds\+P\+M10\+Desc}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M10 Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a234a4584e50c5c5a106ab75386c772fa}\label{main_8h_a234a4584e50c5c5a106ab75386c772fa}} 
+String \mbox{\hyperlink{main_8h_a234a4584e50c5c5a106ab75386c772fa}{ds\+P\+M10\+Ob\+Type}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M10 Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7b027a4a9e5febf93fd9186514174040}\label{main_8h_a7b027a4a9e5febf93fd9186514174040}} 
+String \mbox{\hyperlink{main_8h_a7b027a4a9e5febf93fd9186514174040}{ds\+P\+M10\+Uo\+M\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M10 Unit of Measurement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_add75d9f12020307a6a4b18feeb2aa9c5}\label{main_8h_add75d9f12020307a6a4b18feeb2aa9c5}} 
+String \mbox{\hyperlink{main_8h_add75d9f12020307a6a4b18feeb2aa9c5}{ds\+P\+M10\+Uo\+M\+Sym}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M10 UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a2299e9376d5b774ab46f1d334bebb199}\label{main_8h_a2299e9376d5b774ab46f1d334bebb199}} 
+String \mbox{\hyperlink{main_8h_a2299e9376d5b774ab46f1d334bebb199}{ds\+P\+M10\+Uo\+M\+Def}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M10 UoM Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a88f44d8e2ffc1bd634cc2c720ca0c0dc}\label{main_8h_a88f44d8e2ffc1bd634cc2c720ca0c0dc}} 
+String \mbox{\hyperlink{main_8h_a88f44d8e2ffc1bd634cc2c720ca0c0dc}{ds\+P\+M10\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M10 Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8b432100ace99ca2c0009e18d2967428}\label{main_8h_a8b432100ace99ca2c0009e18d2967428}} 
+String \mbox{\hyperlink{main_8h_a8b432100ace99ca2c0009e18d2967428}{ds\+P\+M10\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M10 IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a90eee97b65ba694a33c624c468d48479}\label{main_8h_a90eee97b65ba694a33c624c468d48479}} 
+String \mbox{\hyperlink{main_8h_a90eee97b65ba694a33c624c468d48479}{ds\+P\+M10\+Json}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M10 J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab619f63dbbd2c39ed449fcc98967ba66}\label{main_8h_ab619f63dbbd2c39ed449fcc98967ba66}} 
+String \mbox{\hyperlink{main_8h_ab619f63dbbd2c39ed449fcc98967ba66}{ds\+P\+M25\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M2.\+5 Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1adc847960c62f774bfbf9695f4f4218}\label{main_8h_a1adc847960c62f774bfbf9695f4f4218}} 
+String \mbox{\hyperlink{main_8h_a1adc847960c62f774bfbf9695f4f4218}{ds\+P\+M25\+Desc}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M2.\+5 Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a18b5c70233ef86a135da8da645c303af}\label{main_8h_a18b5c70233ef86a135da8da645c303af}} 
+String \mbox{\hyperlink{main_8h_a18b5c70233ef86a135da8da645c303af}{ds\+P\+M25\+Ob\+Type}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M2.\+5 Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9b803cf4d4eec08c420fb52a07f9ec88}\label{main_8h_a9b803cf4d4eec08c420fb52a07f9ec88}} 
+String \mbox{\hyperlink{main_8h_a9b803cf4d4eec08c420fb52a07f9ec88}{ds\+P\+M25\+Uo\+M\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M2.\+5 Unit of Measurement. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af9a6836f29f10a8e65a13f30eaa14262}\label{main_8h_af9a6836f29f10a8e65a13f30eaa14262}} 
+String \mbox{\hyperlink{main_8h_af9a6836f29f10a8e65a13f30eaa14262}{ds\+P\+M25\+Uo\+M\+Sym}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M2.\+5 UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6f8ddf74b6e10d9b9448c5744246df96}\label{main_8h_a6f8ddf74b6e10d9b9448c5744246df96}} 
+String \mbox{\hyperlink{main_8h_a6f8ddf74b6e10d9b9448c5744246df96}{ds\+P\+M25\+Uo\+M\+Def}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M2.\+5 UoM Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5f1e99bf2badfde034dc4a95870d1e2e}\label{main_8h_a5f1e99bf2badfde034dc4a95870d1e2e}} 
+String \mbox{\hyperlink{main_8h_a5f1e99bf2badfde034dc4a95870d1e2e}{ds\+P\+M25\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M2.\+5 Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a51b529ee04c68dd8a1c54555d8ad97e8}\label{main_8h_a51b529ee04c68dd8a1c54555d8ad97e8}} 
+String \mbox{\hyperlink{main_8h_a51b529ee04c68dd8a1c54555d8ad97e8}{ds\+P\+M25\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M2.\+5 IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a4a26449364aafb3278a7f519ad656bf5}\label{main_8h_a4a26449364aafb3278a7f519ad656bf5}} 
+String \mbox{\hyperlink{main_8h_a4a26449364aafb3278a7f519ad656bf5}{ds\+P\+M25\+Json}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 P\+M2.\+5 J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab16bf2a30fe3493362e110348479fac9}\label{main_8h_ab16bf2a30fe3493362e110348479fac9}} 
+String \mbox{\hyperlink{main_8h_ab16bf2a30fe3493362e110348479fac9}{ds\+Hm\+Bme\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Humidity Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a03ef698bf6277dd8eaad88ec74b84591}\label{main_8h_a03ef698bf6277dd8eaad88ec74b84591}} 
+String \mbox{\hyperlink{main_8h_a03ef698bf6277dd8eaad88ec74b84591}{ds\+Hm\+Bme\+Desc}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Humidity Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a78e3773cc7a0c4defff767ca4ee84425}\label{main_8h_a78e3773cc7a0c4defff767ca4ee84425}} 
+String \mbox{\hyperlink{main_8h_a78e3773cc7a0c4defff767ca4ee84425}{ds\+Hm\+Bme\+Ob\+Type}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Humidity Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a975b806318fab5b583d72bb4df995ba8}\label{main_8h_a975b806318fab5b583d72bb4df995ba8}} 
+String \mbox{\hyperlink{main_8h_a975b806318fab5b583d72bb4df995ba8}{ds\+Hm\+Bme\+Uo\+M\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Humidity Unit of Measurement Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aeedf47699662dca6256dffba94e2448e}\label{main_8h_aeedf47699662dca6256dffba94e2448e}} 
+String \mbox{\hyperlink{main_8h_aeedf47699662dca6256dffba94e2448e}{ds\+Hm\+Bme\+Uo\+M\+Sym}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Humidity UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a20b04442141641bef31a8632bf0f95af}\label{main_8h_a20b04442141641bef31a8632bf0f95af}} 
+String \mbox{\hyperlink{main_8h_a20b04442141641bef31a8632bf0f95af}{ds\+Hm\+Bme\+Uo\+M\+Def}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Humidity UoM Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab9d736d50fa947d13a257c5ad552bf6d}\label{main_8h_ab9d736d50fa947d13a257c5ad552bf6d}} 
+String \mbox{\hyperlink{main_8h_ab9d736d50fa947d13a257c5ad552bf6d}{ds\+Hm\+Bme\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Humidity Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af68ee178f8febbed329c456ab88d239e}\label{main_8h_af68ee178f8febbed329c456ab88d239e}} 
+String \mbox{\hyperlink{main_8h_af68ee178f8febbed329c456ab88d239e}{ds\+Hm\+Bme\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Humidity IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af4011d5bd7ba5b155a2651d97f7d525b}\label{main_8h_af4011d5bd7ba5b155a2651d97f7d525b}} 
+String \mbox{\hyperlink{main_8h_af4011d5bd7ba5b155a2651d97f7d525b}{ds\+Hm\+Bme\+Json}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Humidity J\+S\+ON M\+Essage. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aca144f1683dacd5a1d857baebcf35776}\label{main_8h_aca144f1683dacd5a1d857baebcf35776}} 
+String \mbox{\hyperlink{main_8h_aca144f1683dacd5a1d857baebcf35776}{ds\+Tm\+Bme\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Temperature Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aae5551e82418fba28e7a5359a3c17872}\label{main_8h_aae5551e82418fba28e7a5359a3c17872}} 
+String \mbox{\hyperlink{main_8h_aae5551e82418fba28e7a5359a3c17872}{ds\+Tm\+Bme\+Desc}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Temperature Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1280c227cd660422b06b066235b7f4c3}\label{main_8h_a1280c227cd660422b06b066235b7f4c3}} 
+String \mbox{\hyperlink{main_8h_a1280c227cd660422b06b066235b7f4c3}{ds\+Tm\+Bme\+Ob\+Type}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Temperature Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a424e954f26e15368ae0f85e691f9cf2b}\label{main_8h_a424e954f26e15368ae0f85e691f9cf2b}} 
+String \mbox{\hyperlink{main_8h_a424e954f26e15368ae0f85e691f9cf2b}{ds\+Tm\+Bme\+Uo\+M\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Temperature Unit of Measurement Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ae1159e91215aeeb2fd3bd9f2950b1331}\label{main_8h_ae1159e91215aeeb2fd3bd9f2950b1331}} 
+String \mbox{\hyperlink{main_8h_ae1159e91215aeeb2fd3bd9f2950b1331}{ds\+Tm\+Bme\+Uo\+M\+Sym}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Temperature UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a4d0b280c182b251dd44363a1e2b91c14}\label{main_8h_a4d0b280c182b251dd44363a1e2b91c14}} 
+String \mbox{\hyperlink{main_8h_a4d0b280c182b251dd44363a1e2b91c14}{ds\+Tm\+Bme\+Uo\+M\+Def}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Temperature UoM Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac399fd6e0877c600873ccc6e912b6c03}\label{main_8h_ac399fd6e0877c600873ccc6e912b6c03}} 
+String \mbox{\hyperlink{main_8h_ac399fd6e0877c600873ccc6e912b6c03}{ds\+Tm\+Bme\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Temperature Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ae093d01d1d2938c528ea43f1bbd199d2}\label{main_8h_ae093d01d1d2938c528ea43f1bbd199d2}} 
+String \mbox{\hyperlink{main_8h_ae093d01d1d2938c528ea43f1bbd199d2}{ds\+Tm\+Bme\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Temperature IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a62a0a372de37aeec508e022a8d8c939e}\label{main_8h_a62a0a372de37aeec508e022a8d8c939e}} 
+String \mbox{\hyperlink{main_8h_a62a0a372de37aeec508e022a8d8c939e}{ds\+Tm\+Bme\+Json}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Temperature J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_afa680987fe97795ee2cb9f1cf6bb8eb8}\label{main_8h_afa680987fe97795ee2cb9f1cf6bb8eb8}} 
+String \mbox{\hyperlink{main_8h_afa680987fe97795ee2cb9f1cf6bb8eb8}{ds\+Pr\+Bme\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Pressure Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a30637e3eb86e53a9c7ab1fd5c5c163c7}\label{main_8h_a30637e3eb86e53a9c7ab1fd5c5c163c7}} 
+String \mbox{\hyperlink{main_8h_a30637e3eb86e53a9c7ab1fd5c5c163c7}{ds\+Pr\+Bme\+Desc}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Pressure Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1f7722ebdd26970f2063193f266d3cd7}\label{main_8h_a1f7722ebdd26970f2063193f266d3cd7}} 
+String \mbox{\hyperlink{main_8h_a1f7722ebdd26970f2063193f266d3cd7}{ds\+Pr\+Bme\+Ob\+Type}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Pressure Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9d5106a4057b294023a7bb4a07116025}\label{main_8h_a9d5106a4057b294023a7bb4a07116025}} 
+String \mbox{\hyperlink{main_8h_a9d5106a4057b294023a7bb4a07116025}{ds\+Pr\+Bme\+Uo\+M\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Pressure Unit of M\+Easurement Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_acea1345c00672eb5510445ae1a2e55bd}\label{main_8h_acea1345c00672eb5510445ae1a2e55bd}} 
+String \mbox{\hyperlink{main_8h_acea1345c00672eb5510445ae1a2e55bd}{ds\+Pr\+Bme\+Uo\+M\+Sym}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Pressure UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_afb019d818bbe95c86a5807cd1ae93fe2}\label{main_8h_afb019d818bbe95c86a5807cd1ae93fe2}} 
+String \mbox{\hyperlink{main_8h_afb019d818bbe95c86a5807cd1ae93fe2}{ds\+Pr\+Bme\+Uo\+M\+Def}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Pressure UoM Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_afc0cd3c433756d4d5d0c106374bf8454}\label{main_8h_afc0cd3c433756d4d5d0c106374bf8454}} 
+String \mbox{\hyperlink{main_8h_afc0cd3c433756d4d5d0c106374bf8454}{ds\+Pr\+Bme\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Pressure Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_adf548c73a4ef158080ded14eb28ac545}\label{main_8h_adf548c73a4ef158080ded14eb28ac545}} 
+String \mbox{\hyperlink{main_8h_adf548c73a4ef158080ded14eb28ac545}{ds\+Pr\+Bme\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Pressure IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aa68e4bd884938e1473a1f3361f2e21dc}\label{main_8h_aa68e4bd884938e1473a1f3361f2e21dc}} 
+String \mbox{\hyperlink{main_8h_aa68e4bd884938e1473a1f3361f2e21dc}{ds\+Pr\+Bme\+Json}}
+\begin{DoxyCompactList}\small\item\em Datastream B\+M\+E280 Pressure J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a31bb10b01a5e6228560410f2c2f4b4c0}\label{main_8h_a31bb10b01a5e6228560410f2c2f4b4c0}} 
+String \mbox{\hyperlink{main_8h_a31bb10b01a5e6228560410f2c2f4b4c0}{ds\+Hm\+Dht\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Humidity Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a88a697f222380ab7e827d913fcb15787}\label{main_8h_a88a697f222380ab7e827d913fcb15787}} 
+String \mbox{\hyperlink{main_8h_a88a697f222380ab7e827d913fcb15787}{ds\+Hm\+Dht\+Desc}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Humidity Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8d5d159cc05b70376fcb4887bc14823d}\label{main_8h_a8d5d159cc05b70376fcb4887bc14823d}} 
+String \mbox{\hyperlink{main_8h_a8d5d159cc05b70376fcb4887bc14823d}{ds\+Hm\+Dht\+Ob\+Type}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Humidity Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a2e8e95a80c62458bad603fe3ddfef8cb}\label{main_8h_a2e8e95a80c62458bad603fe3ddfef8cb}} 
+String \mbox{\hyperlink{main_8h_a2e8e95a80c62458bad603fe3ddfef8cb}{ds\+Hm\+Dht\+Uo\+M\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Humidity Unit of Measurement Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8ce5ba908a3dbfa31060597bf5c26663}\label{main_8h_a8ce5ba908a3dbfa31060597bf5c26663}} 
+String \mbox{\hyperlink{main_8h_a8ce5ba908a3dbfa31060597bf5c26663}{ds\+Hm\+Dht\+Uo\+M\+Sym}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Humidity UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac65e7de05f65e2e112eebecae30f33f5}\label{main_8h_ac65e7de05f65e2e112eebecae30f33f5}} 
+String \mbox{\hyperlink{main_8h_ac65e7de05f65e2e112eebecae30f33f5}{ds\+Hm\+Dht\+Uo\+M\+Def}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Humidity UoM Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a939ddfa046561f414e2a61771ded4872}\label{main_8h_a939ddfa046561f414e2a61771ded4872}} 
+String \mbox{\hyperlink{main_8h_a939ddfa046561f414e2a61771ded4872}{ds\+Hm\+Dht\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Humidity Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_af721c7170f3a968746d3700d9e663bd8}\label{main_8h_af721c7170f3a968746d3700d9e663bd8}} 
+String \mbox{\hyperlink{main_8h_af721c7170f3a968746d3700d9e663bd8}{ds\+Hm\+Dht\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Humidity IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a2ca3a3aeb589e8cb1b62d7885972ec41}\label{main_8h_a2ca3a3aeb589e8cb1b62d7885972ec41}} 
+String \mbox{\hyperlink{main_8h_a2ca3a3aeb589e8cb1b62d7885972ec41}{ds\+Hm\+Dht\+Json}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Humidity J\+S\+ON Message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a357752e2450b54c8362deb6dbdcf4780}\label{main_8h_a357752e2450b54c8362deb6dbdcf4780}} 
+String \mbox{\hyperlink{main_8h_a357752e2450b54c8362deb6dbdcf4780}{ds\+Tm\+Dht\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Temperature Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac84c8e07e14c15fe5edf242080b860db}\label{main_8h_ac84c8e07e14c15fe5edf242080b860db}} 
+String \mbox{\hyperlink{main_8h_ac84c8e07e14c15fe5edf242080b860db}{ds\+Tm\+Dht\+Desc}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Temperature Description. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7c5ed109deb20fe619778c259f91e439}\label{main_8h_a7c5ed109deb20fe619778c259f91e439}} 
+String \mbox{\hyperlink{main_8h_a7c5ed109deb20fe619778c259f91e439}{ds\+Tm\+Dht\+Ob\+Type}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Temperature Type. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a98edfd2c3bdbd6e94c3ea0602d4d8462}\label{main_8h_a98edfd2c3bdbd6e94c3ea0602d4d8462}} 
+String \mbox{\hyperlink{main_8h_a98edfd2c3bdbd6e94c3ea0602d4d8462}{ds\+Tm\+Dht\+Uo\+M\+Name}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Temperature Unit of Measurement Name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a42b72c8e9f5cec760d14e2435e4af0a9}\label{main_8h_a42b72c8e9f5cec760d14e2435e4af0a9}} 
+String \mbox{\hyperlink{main_8h_a42b72c8e9f5cec760d14e2435e4af0a9}{ds\+Tm\+Dht\+Uo\+M\+Sym}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Temperature UoM Symbol. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac8989182a8e7bf8d22703ca3734d4cfc}\label{main_8h_ac8989182a8e7bf8d22703ca3734d4cfc}} 
+String \mbox{\hyperlink{main_8h_ac8989182a8e7bf8d22703ca3734d4cfc}{ds\+Tm\+Dht\+Uo\+M\+Def}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Temperature UoM Definition. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a801c1f7408631e98fae5b9ecc3292bc3}\label{main_8h_a801c1f7408631e98fae5b9ecc3292bc3}} 
+String \mbox{\hyperlink{main_8h_a801c1f7408631e98fae5b9ecc3292bc3}{ds\+Tm\+Dht\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Temperature Simple ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad1ecda8af3049e09d8f329771736e40d}\label{main_8h_ad1ecda8af3049e09d8f329771736e40d}} 
+String \mbox{\hyperlink{main_8h_ad1ecda8af3049e09d8f329771736e40d}{ds\+Tm\+Dht\+Iot\+Id}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Temperature IoT ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab34ac03f890ca4c4f78e7bd1b2283976}\label{main_8h_ab34ac03f890ca4c4f78e7bd1b2283976}} 
+String \mbox{\hyperlink{main_8h_ab34ac03f890ca4c4f78e7bd1b2283976}{ds\+Tm\+Dht\+Json}}
+\begin{DoxyCompactList}\small\item\em Datastream D\+H\+T22 Temperature J\+S\+ON Message. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{main_8h_a268d9b1e5e404ee689ae7bf1ca226942}{use\+\_\+bme280}} = false
+\begin{DoxyCompactList}\small\item\em tracking if B\+M\+E280 sensor is selected \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{main_8h_a0b8e8b6e49d8992ea37dc70d6cd105bb}{use\+\_\+dht22}} = false
+\begin{DoxyCompactList}\small\item\em tracking if D\+H\+T22 sensor is selected \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a8b461628d2e578e6e7d2ddd79c83e2fc}\label{main_8h_a8b461628d2e578e6e7d2ddd79c83e2fc}} 
+bool \mbox{\hyperlink{main_8h_a8b461628d2e578e6e7d2ddd79c83e2fc}{initialised\+\_\+frost}} = false
+\begin{DoxyCompactList}\small\item\em if frost manager is initialized, i.\+e. entities are createdd on the server seccessfully \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_abbe792bb2cf67584b86443440a194f46}\label{main_8h_abbe792bb2cf67584b86443440a194f46}} 
+bool \mbox{\hyperlink{main_8h_abbe792bb2cf67584b86443440a194f46}{busy}}
+\begin{DoxyCompactList}\small\item\em indicated the busy status while entities are being created on the server \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a43675163416d0468e787ae5e78101d8c}\label{main_8h_a43675163416d0468e787ae5e78101d8c}} 
+bool \mbox{\hyperlink{main_8h_a43675163416d0468e787ae5e78101d8c}{initialised\+\_\+http}} = false
+\begin{DoxyCompactList}\small\item\em if H\+T\+TP Server manager is initialized \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a36071d51503ca8b42c5c0be8294995da}\label{main_8h_a36071d51503ca8b42c5c0be8294995da}} 
+bool \mbox{\hyperlink{main_8h_a36071d51503ca8b42c5c0be8294995da}{wifi\+\_\+connected}}
+\begin{DoxyCompactList}\small\item\em if wifi is connected \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a1e3ac1a8a94702170acdd1bc934b1f87}\label{main_8h_a1e3ac1a8a94702170acdd1bc934b1f87}} 
+bool \mbox{\hyperlink{main_8h_a1e3ac1a8a94702170acdd1bc934b1f87}{time\+\_\+updated}}
+\begin{DoxyCompactList}\small\item\em if N\+TP time is synced \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a45c8cb99f0dede42cd17b3cae73344d2}\label{main_8h_a45c8cb99f0dede42cd17b3cae73344d2}} 
+unsigned int \mbox{\hyperlink{main_8h_a45c8cb99f0dede42cd17b3cae73344d2}{t\+Observations}}
+\begin{DoxyCompactList}\small\item\em total number of observations posted \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aca788da1bb94e00641b6b0c009cbe0cf}\label{main_8h_aca788da1bb94e00641b6b0c009cbe0cf}} 
+unsigned int \mbox{\hyperlink{main_8h_aca788da1bb94e00641b6b0c009cbe0cf}{n\+Observations}}
+\begin{DoxyCompactList}\small\item\em total number of observations not posted successfully \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ae2c827b20e0e0b655e7c940bf586494e}\label{main_8h_ae2c827b20e0e0b655e7c940bf586494e}} 
+unsigned int \mbox{\hyperlink{main_8h_ae2c827b20e0e0b655e7c940bf586494e}{reset\+Counter}}
+\begin{DoxyCompactList}\small\item\em No. of reboots. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a540a3a340d0772e9a18888d64f7573f9}\label{main_8h_a540a3a340d0772e9a18888d64f7573f9}} 
+String \mbox{\hyperlink{main_8h_a540a3a340d0772e9a18888d64f7573f9}{time\+Of\+Measure}}
+\begin{DoxyCompactList}\small\item\em the time of the measurement of the first observation \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5152df7312b570a9c04d0305577d4113}\label{main_8h_a5152df7312b570a9c04d0305577d4113}} 
+unsigned int \mbox{\hyperlink{main_8h_a5152df7312b570a9c04d0305577d4113}{error\+Code}}
+\begin{DoxyCompactList}\small\item\em the error encodings \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a4011da054bc45bbb390af503eeed217e}\label{main_8h_a4011da054bc45bbb390af503eeed217e}} 
+unsigned int \mbox{\hyperlink{main_8h_a4011da054bc45bbb390af503eeed217e}{old\+Err\+Code}}
+\begin{DoxyCompactList}\small\item\em the error encodings last saved \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a702dd75ac1b5b78a0977a4f6e6b7d993}\label{main_8h_a702dd75ac1b5b78a0977a4f6e6b7d993}} 
+unsigned int \mbox{\hyperlink{main_8h_a702dd75ac1b5b78a0977a4f6e6b7d993}{count\+Sensor\+Interval}}
+\begin{DoxyCompactList}\small\item\em count the intervals of sensor measurement \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad9a078f7f5a00549c6d662079e98f9af}\label{main_8h_ad9a078f7f5a00549c6d662079e98f9af}} 
+unsigned char \mbox{\hyperlink{main_8h_ad9a078f7f5a00549c6d662079e98f9af}{bme\+Address}}
+\begin{DoxyCompactList}\small\item\em Add of the B\+M\+E280 I2C, dynamic fetched from B\+M\+E\+\_\+\+A\+DR. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a4f4d9c9083a56baa7390e6c2b94f853d}\label{main_8h_a4f4d9c9083a56baa7390e6c2b94f853d}} 
+float \mbox{\hyperlink{main_8h_a4f4d9c9083a56baa7390e6c2b94f853d}{pm10}}
+\begin{DoxyCompactList}\small\item\em vars to store sensor results, sensor results for dust sensor pm10 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a9cc80dc9c5ed579f2b36bfa188649c73}\label{main_8h_a9cc80dc9c5ed579f2b36bfa188649c73}} 
+float \mbox{\hyperlink{main_8h_a9cc80dc9c5ed579f2b36bfa188649c73}{pm25}}
+\begin{DoxyCompactList}\small\item\em sensor results for dust sensor pm25 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a24d61a35b72d7299eb6b5f48e71a571b}\label{main_8h_a24d61a35b72d7299eb6b5f48e71a571b}} 
+float \mbox{\hyperlink{main_8h_a24d61a35b72d7299eb6b5f48e71a571b}{temp}}
+\begin{DoxyCompactList}\small\item\em temperature values \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a38adb4de3d9d0391675c323d13503af7}\label{main_8h_a38adb4de3d9d0391675c323d13503af7}} 
+float \mbox{\hyperlink{main_8h_a38adb4de3d9d0391675c323d13503af7}{hum}}
+\begin{DoxyCompactList}\small\item\em humidity values \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7d031eabfc5343396f4e4a58c99f8230}\label{main_8h_a7d031eabfc5343396f4e4a58c99f8230}} 
+float \mbox{\hyperlink{main_8h_a7d031eabfc5343396f4e4a58c99f8230}{atm}}
+\begin{DoxyCompactList}\small\item\em pressure values \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a0f5ccee55c72d24ff7c869b5f061a1a2}\label{main_8h_a0f5ccee55c72d24ff7c869b5f061a1a2}} 
+String \mbox{\hyperlink{main_8h_a0f5ccee55c72d24ff7c869b5f061a1a2}{timeofmeas\+\_\+sds}}
+\begin{DoxyCompactList}\small\item\em time of measurement for sds reading \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_aa5fd956c1fb06e1fb9a73417d30bf15e}\label{main_8h_aa5fd956c1fb06e1fb9a73417d30bf15e}} 
+String \mbox{\hyperlink{main_8h_aa5fd956c1fb06e1fb9a73417d30bf15e}{timeofmeas\+\_\+rht}}
+\begin{DoxyCompactList}\small\item\em time of measurement for rht reading \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a48bba4089cfca5de5189167f78b37a32}\label{main_8h_a48bba4089cfca5de5189167f78b37a32}} 
+int \mbox{\hyperlink{main_8h_a48bba4089cfca5de5189167f78b37a32}{status\+\_\+sds}}
+\begin{DoxyCompactList}\small\item\em sds status \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{main_8h_a45d12cf9a1aad6de4fc0f7b51d3c2a47}{http\+\_\+error}}
+\begin{DoxyCompactList}\small\item\em set display contrast \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab12828525693568ae9c217805bea1ef9}\label{main_8h_ab12828525693568ae9c217805bea1ef9}} 
+unsigned char \mbox{\hyperlink{main_8h_ab12828525693568ae9c217805bea1ef9}{state}}
+\begin{DoxyCompactList}\small\item\em state machine tracking variable \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}\label{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}} 
+float \mbox{\hyperlink{main_8h_ad9e643bc6bd5a62b9b5011cf1c93629e}{latitude}}
+\begin{DoxyCompactList}\small\item\em Location Latitude Point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a006303577d6adb772761727538b74f80}\label{main_8h_a006303577d6adb772761727538b74f80}} 
+float \mbox{\hyperlink{main_8h_a006303577d6adb772761727538b74f80}{longitude}}
+\begin{DoxyCompactList}\small\item\em Location longitude Point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5fa85ffee34300f181ee595ca35caac9}\label{main_8h_a5fa85ffee34300f181ee595ca35caac9}} 
+float \mbox{\hyperlink{main_8h_a5fa85ffee34300f181ee595ca35caac9}{abovenn}}
+\begin{DoxyCompactList}\small\item\em Location abovenn Point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_abdc4960daecc2ccc289d9a50f11ccb47}\label{main_8h_abdc4960daecc2ccc289d9a50f11ccb47}} 
+float \mbox{\hyperlink{main_8h_abdc4960daecc2ccc289d9a50f11ccb47}{abovenn\+Estimated}}
+\begin{DoxyCompactList}\small\item\em Location Estimated abovenn Point. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5e122034cdfb5584cc1ee2b30068327c}\label{main_8h_a5e122034cdfb5584cc1ee2b30068327c}} 
+String \mbox{\hyperlink{main_8h_a5e122034cdfb5584cc1ee2b30068327c}{human\+Readable\+Location}}
+\begin{DoxyCompactList}\small\item\em Human Readable Name of the street location. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a20655b59a0bc9b760da65c4e6793a981}\label{main_8h_a20655b59a0bc9b760da65c4e6793a981}} 
+String \mbox{\hyperlink{main_8h_a20655b59a0bc9b760da65c4e6793a981}{rht\+Sensor}}
+\begin{DoxyCompactList}\small\item\em rht sensor global variable \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{main_8h_ac34c6d6c5015a01d6aba05368fd9fdb7}{license\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em Possible additional sensors other than S\+D\+S011. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab858f3b72becb912c937938bb7432cef}\label{main_8h_ab858f3b72becb912c937938bb7432cef}} 
+String \mbox{\hyperlink{main_8h_ab858f3b72becb912c937938bb7432cef}{license\+\_\+owner}}
+\begin{DoxyCompactList}\small\item\em License Owner for License property. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a5fcc3dc147772d5725cd4a6956a71c62}\label{main_8h_a5fcc3dc147772d5725cd4a6956a71c62}} 
+String \mbox{\hyperlink{main_8h_a5fcc3dc147772d5725cd4a6956a71c62}{license\+\_\+url}}
+\begin{DoxyCompactList}\small\item\em License Meta for License property. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6f56f37a7d93ec2851a5d9bc46ae4d34}\label{main_8h_a6f56f37a7d93ec2851a5d9bc46ae4d34}} 
+String \mbox{\hyperlink{main_8h_a6f56f37a7d93ec2851a5d9bc46ae4d34}{device\+\_\+\+Serial}}
+\begin{DoxyCompactList}\small\item\em Chip ID for the E\+Sp32. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ac0c97362dcfdb40676d7f1b48843aa73}\label{main_8h_ac0c97362dcfdb40676d7f1b48843aa73}} 
+String \mbox{\hyperlink{main_8h_ac0c97362dcfdb40676d7f1b48843aa73}{S\+D\+S011\+\_\+\+Serial}}
+\begin{DoxyCompactList}\small\item\em ID written of S\+D\+S011 Sensor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a775118f5b90a904c7e65066faabab1a2}\label{main_8h_a775118f5b90a904c7e65066faabab1a2}} 
+byte \mbox{\hyperlink{main_8h_a775118f5b90a904c7e65066faabab1a2}{mac}} \mbox{[}6\mbox{]}
+\begin{DoxyCompactList}\small\item\em used to store mac address \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{main_8h_a8687b46efcc1aac7c80814a74bac954b}{esp32\+\_\+chipid}}
+\begin{DoxyCompactList}\small\item\em Chip ID based on M\+AC. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a3cdea54384a5fdd12b66a5ed35998aa6}\label{main_8h_a3cdea54384a5fdd12b66a5ed35998aa6}} 
+char \mbox{\hyperlink{main_8h_a3cdea54384a5fdd12b66a5ed35998aa6}{destination\+\_\+madavi}} \mbox{[}$\,$\mbox{]} = \char`\"{}https\+://api-\/rrd.\+madavi.\+de/data.\+php\char`\"{}
+\begin{DoxyCompactList}\small\item\em host to send data madavi A\+PI \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab1b2b41e0eb342878a19b53881efe30c}\label{main_8h_ab1b2b41e0eb342878a19b53881efe30c}} 
+char \mbox{\hyperlink{main_8h_ab1b2b41e0eb342878a19b53881efe30c}{destination\+\_\+luftdaten}} \mbox{[}$\,$\mbox{]} = \char`\"{}https\+://api.\+luftdaten.\+info/v1/push-\/sensor-\/data/\char`\"{}
+\begin{DoxyCompactList}\small\item\em host to send data luftdaten A\+PI \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a0d3038c949b3590fa1cba35f487583b8}\label{main_8h_a0d3038c949b3590fa1cba35f487583b8}} 
+H\+T\+T\+P\+Client \mbox{\hyperlink{main_8h_a0d3038c949b3590fa1cba35f487583b8}{g\+Http}}
+\begin{DoxyCompactList}\small\item\em H\+T\+TP Client Variable Global. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a7b1a43814b8c79bf694be69883c2461a}\label{main_8h_a7b1a43814b8c79bf694be69883c2461a}} 
+int \mbox{\hyperlink{main_8h_a7b1a43814b8c79bf694be69883c2461a}{g\+Http\+Code}}
+\begin{DoxyCompactList}\small\item\em H\+T\+TP Client Response Global. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a22f33e7e05df58bb6145bb6e543e232a}\label{main_8h_a22f33e7e05df58bb6145bb6e543e232a}} 
+Wi\+Fi\+U\+DP \mbox{\hyperlink{main_8h_a22f33e7e05df58bb6145bb6e543e232a}{ntp\+U\+DP}}
+\begin{DoxyCompactList}\small\item\em initialise udp for network time \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ab4f15e5e4298004d97fe1734ee796f5e}\label{main_8h_ab4f15e5e4298004d97fe1734ee796f5e}} 
+Web\+Server \mbox{\hyperlink{main_8h_ab4f15e5e4298004d97fe1734ee796f5e}{Server}}
+\begin{DoxyCompactList}\small\item\em initialise Webserver \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_ae445ddc35b16391cb8ed39779004ccbf}\label{main_8h_ae445ddc35b16391cb8ed39779004ccbf}} 
+Auto\+Connect\+Config \mbox{\hyperlink{main_8h_ae445ddc35b16391cb8ed39779004ccbf}{Config}}
+\begin{DoxyCompactList}\small\item\em initialise Auto\+Connect\+Config \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a0f8ea35403f5fcb0c5d595b360c61926}\label{main_8h_a0f8ea35403f5fcb0c5d595b360c61926}} 
+String \mbox{\hyperlink{main_8h_a0f8ea35403f5fcb0c5d595b360c61926}{cfg\+Temp}}
+\begin{DoxyCompactList}\small\item\em String to hold temporary html scripts for Auto\+Connect. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{main_8h_a6719681c6a0878224435b1f6dcce627f}\label{main_8h_a6719681c6a0878224435b1f6dcce627f}} 
+const char $\ast$ \mbox{\hyperlink{main_8h_a6719681c6a0878224435b1f6dcce627f}{ota\+Update}}
+\begin{DoxyCompactList}\small\item\em Page for O\+TA Programming html. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This the main page for the S\+M\+A\+R\+T\+A\+Q\+N\+ET which is the core of the project. 
+
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main_8h_acbb11c1e34784cf1e3147029f942bfd6}\label{main_8h_acbb11c1e34784cf1e3147029f942bfd6}} 
+\index{main.h@{main.h}!BASE\_URL@{BASE\_URL}}
+\index{BASE\_URL@{BASE\_URL}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{BASE\_URL}{BASE\_URL}}
+{\footnotesize\ttfamily \#define B\+A\+S\+E\+\_\+\+U\+RL~\char`\"{}http\+://193.\+196.\+38.\+108\+:8080/F\+R\+O\+ST-\/\mbox{\hyperlink{main_8h_ab4f15e5e4298004d97fe1734ee796f5e}{Server}}/v1.\+0\char`\"{}}
+
+
+
+Debugging, uncomment to switch servers to release version, enable sending to madavi and luftdaten.\+info, and supress some debug output. 
+
+Non-\/\+Release Version\+: Frost Server Base address used in Frost\+\_\+\+Server.\+cpp 
+
+Definition at line 600 of file main.\+h.
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8h_a2bc07c34ce88e61fa0974a4624441358}\label{main_8h_a2bc07c34ce88e61fa0974a4624441358}} 
+\index{main.h@{main.h}!createEntities@{createEntities}}
+\index{createEntities@{createEntities}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{createEntities()}{createEntities()}}
+{\footnotesize\ttfamily bool create\+Entities (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+create different entities like Thing, Sensor, Datastream, Observed\+Properties, \& Location and Patch if not already linked 
+
+\begin{DoxyReturn}{Returns}
+created bool variable to indicated if the all the entities are seccessfully created 
+\end{DoxyReturn}
+
+
+Definition at line 2193 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_a036b6be2dada2e25de5ba011ecf6e6d1}\label{main_8h_a036b6be2dada2e25de5ba011ecf6e6d1}} 
+\index{main.h@{main.h}!createEntity@{createEntity}}
+\index{createEntity@{createEntity}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{createEntity()}{createEntity()}}
+{\footnotesize\ttfamily boolean create\+Entity (\begin{DoxyParamCaption}\item[{String}]{url,  }\item[{String}]{contents }\end{DoxyParamCaption})}
+
+
+
+Create (H\+T\+TP Post) entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & String that contains the address of entities to be created/patched \\
+\hline
+{\em contents} & String that contains the J\+S\+ON message for the server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+http\+Code int indicating H\+T\+T\+P\+Client Code Error 
+\end{DoxyReturn}
+
+
+Definition at line 1889 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_a45966fcc26cfd9cdd7c783fdbcea88cc}\label{main_8h_a45966fcc26cfd9cdd7c783fdbcea88cc}} 
+\index{main.h@{main.h}!createOrPatchEntities@{createOrPatchEntities}}
+\index{createOrPatchEntities@{createOrPatchEntities}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{createOrPatchEntities()}{createOrPatchEntities()}}
+{\footnotesize\ttfamily boolean create\+Or\+Patch\+Entities (\begin{DoxyParamCaption}\item[{String}]{entity,  }\item[{String}]{json,  }\item[{String}]{iot\+Id }\end{DoxyParamCaption})}
+
+
+
+Create (H\+T\+TP Post) if entities does exist and patch (H\+T\+TP Patch) the properties if it already exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & String that contains the address of entities to be created/patched \\
+\hline
+{\em json} & String that contains the J\+S\+ON message for the server \\
+\hline
+{\em iot\+Id} & String that indicate the iot.\+id \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+http\+Code boolean indicating H\+T\+T\+P\+Client Code Error 
+\end{DoxyReturn}
+
+
+Definition at line 2076 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_a24fe5bb6b476d220ec484ce84ee1dee4}\label{main_8h_a24fe5bb6b476d220ec484ce84ee1dee4}} 
+\index{main.h@{main.h}!createOrUpdateEntities@{createOrUpdateEntities}}
+\index{createOrUpdateEntities@{createOrUpdateEntities}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{createOrUpdateEntities()}{createOrUpdateEntities()}}
+{\footnotesize\ttfamily boolean create\+Or\+Update\+Entities (\begin{DoxyParamCaption}\item[{String}]{url,  }\item[{String}]{contents,  }\item[{String}]{id,  }\item[{boolean}]{do\+Patch }\end{DoxyParamCaption})}
+
+
+
+Create (H\+T\+TP Post) if entities does exist and patch (H\+T\+TP Patch) if it already exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & String that contains the address of entities to be created/patched \\
+\hline
+{\em contents} & String that contains the J\+S\+ON message for the server \\
+\hline
+{\em id} & String that indicate the iot.\+id \\
+\hline
+{\em do\+Patch} & bool if true then create \& patch, if false then only create. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+http\+Code int indicating H\+T\+T\+P\+Client Code Error 
+\end{DoxyReturn}
+
+
+Definition at line 2042 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_ae6c120555243b2518a083c9a81912c50}\label{main_8h_ae6c120555243b2518a083c9a81912c50}} 
+\index{main.h@{main.h}!getEntity@{getEntity}}
+\index{getEntity@{getEntity}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{getEntity()}{getEntity()}}
+{\footnotesize\ttfamily int get\+Entity (\begin{DoxyParamCaption}\item[{String}]{url }\end{DoxyParamCaption})}
+
+
+
+Get the H\+T\+TP code (H\+T\+TP Get) from a server and print the response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & String that contains the address of entities to be created/patched \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+response String indicating H\+T\+T\+P\+Client Code response 
+\end{DoxyReturn}
+
+
+Definition at line 1968 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_a42e8beb4deb7bb6e43882dd9f6b9a3a7}\label{main_8h_a42e8beb4deb7bb6e43882dd9f6b9a3a7}} 
+\index{main.h@{main.h}!getEntityResponse@{getEntityResponse}}
+\index{getEntityResponse@{getEntityResponse}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{getEntityResponse()}{getEntityResponse()}}
+{\footnotesize\ttfamily String get\+Entity\+Response (\begin{DoxyParamCaption}\item[{String}]{url }\end{DoxyParamCaption})}
+
+
+
+Get the H\+T\+TP response (H\+T\+TP Get) from a server and print the response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & String that contains the address of entities to be created/patched \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+response String indicating H\+T\+T\+P\+Client Code response 
+\end{DoxyReturn}
+
+
+Definition at line 2004 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_a4aab1f67b50ce6481e7ac83dfff5b13d}\label{main_8h_a4aab1f67b50ce6481e7ac83dfff5b13d}} 
+\index{main.h@{main.h}!patchEntity@{patchEntity}}
+\index{patchEntity@{patchEntity}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{patchEntity()}{patchEntity()}}
+{\footnotesize\ttfamily boolean patch\+Entity (\begin{DoxyParamCaption}\item[{String}]{url,  }\item[{String}]{contents }\end{DoxyParamCaption})}
+
+
+
+Patch (H\+T\+TP Patch) entities. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em url} & String that contains the address of entities to be created/patched \\
+\hline
+{\em contents} & String that contains the J\+S\+ON message for the server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+http\+Code int indicating H\+T\+T\+P\+Client Code Error 
+\end{DoxyReturn}
+
+
+Definition at line 1931 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_ac9ef7d3d153097fbb69d59b22c2a91fa}\label{main_8h_ac9ef7d3d153097fbb69d59b22c2a91fa}} 
+\index{main.h@{main.h}!postObservation@{postObservation}}
+\index{postObservation@{postObservation}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{postObservation()}{postObservation()}}
+{\footnotesize\ttfamily void post\+Observation (\begin{DoxyParamCaption}\item[{int}]{datastream,  }\item[{String}]{phenomenon\+Time,  }\item[{String}]{result\+Time,  }\item[{double}]{result }\end{DoxyParamCaption})}
+
+
+
+Post Observation for sensed vaules of P\+M25, P\+M10, humidity, temperature and Pressure (H\+T\+TP Post) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em datastream} & int selector for P\+M25, P\+M10, humidity, temperature and Pressure etc. \\
+\hline
+{\em phenomenon\+Time} & String that contains phenomenon/occurance Time \\
+\hline
+{\em result\+Time} & String that contains result/finish Time \\
+\hline
+{\em result} & double that contains values for P\+M25, P\+M10, humidity, temperature and Pressure etc. from S\+D\+S011, B\+M\+E280, D\+H\+T22 etc. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void none value 
+\end{DoxyReturn}
+
+
+Definition at line 2581 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_aab371021062944a795900eae5225f4b7}\label{main_8h_aab371021062944a795900eae5225f4b7}} 
+\index{main.h@{main.h}!toHEXSHA@{toHEXSHA}}
+\index{toHEXSHA@{toHEXSHA}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{toHEXSHA()}{toHEXSHA()}}
+{\footnotesize\ttfamily String to\+H\+E\+X\+S\+HA (\begin{DoxyParamCaption}\item[{String}]{serial }\end{DoxyParamCaption})}
+
+
+
+create a H\+A\+SH using S\+H\+A-\/1 
+
+
+\begin{DoxyParams}{Parameters}
+{\em serial} & String values from where H\+A\+SH to be calculated \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+sha1hex String H\+A\+SH output 
+\end{DoxyReturn}
+
+
+Definition at line 1854 of file main.\+h.
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{main_8h_a8687b46efcc1aac7c80814a74bac954b}\label{main_8h_a8687b46efcc1aac7c80814a74bac954b}} 
+\index{main.h@{main.h}!esp32\_chipid@{esp32\_chipid}}
+\index{esp32\_chipid@{esp32\_chipid}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{esp32\_chipid}{esp32\_chipid}}
+{\footnotesize\ttfamily String esp32\+\_\+chipid}
+
+
+
+Chip ID based on M\+AC. 
+
+Externally define variable for Chip ID. 
+
+Definition at line 1231 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_a45d12cf9a1aad6de4fc0f7b51d3c2a47}\label{main_8h_a45d12cf9a1aad6de4fc0f7b51d3c2a47}} 
+\index{main.h@{main.h}!http\_error@{http\_error}}
+\index{http\_error@{http\_error}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{http\_error}{http\_error}}
+{\footnotesize\ttfamily boolean http\+\_\+error}
+
+
+
+set display contrast 
+
+H\+T\+TP Server error 
+
+Definition at line 1199 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_ac34c6d6c5015a01d6aba05368fd9fdb7}\label{main_8h_ac34c6d6c5015a01d6aba05368fd9fdb7}} 
+\index{main.h@{main.h}!license\_type@{license\_type}}
+\index{license\_type@{license\_type}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{license\_type}{license\_type}}
+{\footnotesize\ttfamily String license\+\_\+type}
+
+
+
+Possible additional sensors other than S\+D\+S011. 
+
+additional sensors tracking variable License Type for License property 
+
+Definition at line 1219 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_a268d9b1e5e404ee689ae7bf1ca226942}\label{main_8h_a268d9b1e5e404ee689ae7bf1ca226942}} 
+\index{main.h@{main.h}!use\_bme280@{use\_bme280}}
+\index{use\_bme280@{use\_bme280}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{use\_bme280}{use\_bme280}}
+{\footnotesize\ttfamily bool use\+\_\+bme280 = false}
+
+
+
+tracking if B\+M\+E280 sensor is selected 
+
+Externally define variable to check if using bme280. 
+
+Definition at line 1151 of file main.\+h.
+
+\mbox{\Hypertarget{main_8h_a0b8e8b6e49d8992ea37dc70d6cd105bb}\label{main_8h_a0b8e8b6e49d8992ea37dc70d6cd105bb}} 
+\index{main.h@{main.h}!use\_dht22@{use\_dht22}}
+\index{use\_dht22@{use\_dht22}!main.h@{main.h}}
+\subsubsection{\texorpdfstring{use\_dht22}{use\_dht22}}
+{\footnotesize\ttfamily bool use\+\_\+dht22 = false}
+
+
+
+tracking if D\+H\+T22 sensor is selected 
+
+Externally define variable to check if using dht22. 
+
+Definition at line 1153 of file main.\+h.
+

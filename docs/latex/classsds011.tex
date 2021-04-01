@@ -1,0 +1,518 @@
+\hypertarget{classsds011}{}\section{sds011 Class Reference}
+\label{classsds011}\index{sds011@{sds011}}
+
+
+\mbox{\hyperlink{classsds011}{sds011}} sensor class interface to interace with the hardware  
+
+
+
+
+{\ttfamily \#include $<$sds011lib.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsds011_ae552c4c94bf5496db36fc0b31b574322}\label{classsds011_ae552c4c94bf5496db36fc0b31b574322}} 
+\mbox{\hyperlink{classsds011_ae552c4c94bf5496db36fc0b31b574322}{sds011}} (void)
+\begin{DoxyCompactList}\small\item\em constructor for the class \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_a28daf4c12e7757c1afdf37fe4a1ece87}{begin}} (Hardware\+Serial $\ast$uart, uint8\+\_\+t rx, uint8\+\_\+t tx, uint8\+\_\+t id\+\_\+1=\mbox{\hyperlink{sds011lib_8h_a87c3ec3696c2e8a2489b9930871469b4}{M\+S\+G\+\_\+\+FF}}, uint8\+\_\+t id\+\_\+2=\mbox{\hyperlink{sds011lib_8h_a87c3ec3696c2e8a2489b9930871469b4}{M\+S\+G\+\_\+\+FF}})
+\begin{DoxyCompactList}\small\item\em initializes the \mbox{\hyperlink{classsds011}{sds011}} sensor with hardware port and pins \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_a5c5ba9739e019b5a877e5800d648a41f}{data\+Reporting\+Mode\+Cmd}} (uint8\+\_\+t $\ast$response, uint8\+\_\+t mod=\mbox{\hyperlink{sds011lib_8h_aa7af1453a9caa4f85b40e2e386c741ba}{A\+U\+T\+O\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+M\+O\+DE}}, uint8\+\_\+t wr=\mbox{\hyperlink{sds011lib_8h_a064cc7153fdb5596b2079d865dd9e055}{R\+E\+A\+D\+\_\+\+M\+O\+DE}})
+\begin{DoxyCompactList}\small\item\em function to set the reporting mode to auto or query response will contain either Q\+U\+E\+R\+Y\+\_\+\+M\+O\+DE or A\+U\+T\+O\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+M\+O\+DE, depending on how it was set by this function ( by setting argument wr to W\+R\+I\+T\+E\+\_\+\+M\+O\+DE), or how it was set before if argument wr was set to R\+E\+A\+D\+\_\+\+M\+O\+DE. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_a1416e1fd84eea84ea4d3cdf8a3da8041}{data\+Query\+Cmd}} (float $\ast$ppm10, float $\ast$ppm25)
+\begin{DoxyCompactList}\small\item\em function to retrieve PM values \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_aa166632fddcea1c7841e3578c1c7678c}{data\+Auto\+Query\+Cmd}} (float $\ast$ppm10, float $\ast$ppm25)
+\begin{DoxyCompactList}\small\item\em function to retrieve PM values with out Query command, it will send automatically at the interval set by the work period command \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_a7adab4f4b33b7e9f517dc9179086b6ed}{device\+Id\+Cmd}} (uint8\+\_\+t response\mbox{[}2\mbox{]}, uint8\+\_\+t new\+\_\+\+Id1, uint8\+\_\+t new\+\_\+\+Id2)
+\begin{DoxyCompactList}\small\item\em function to set new id/serial number for the sensor. Device id is two bytes, the factory sets each device to a unique id. New id will be returned in response. By default any device is addressed by address FF FF. This is the default for this library as not many people will connect more than one device to the same serial lines. If this default (FF FF) is used, class instance device id (\+\_\+id\+\_\+1 and \+\_\+id\+\_\+2 ) will not be updated with this new device address, and FF FF will continued to be used to address the device. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_ad9ddddbcb9213f2b0674dee5fb47a5de}{sleep\+Work\+Mode\+Cmd}} (uint8\+\_\+t $\ast$response, uint8\+\_\+t mod=\mbox{\hyperlink{sds011lib_8h_a6999479ba92a931638a17a00c35a5234}{W\+O\+R\+K\+\_\+\+M\+O\+DE}}, uint8\+\_\+t wr=\mbox{\hyperlink{sds011lib_8h_a064cc7153fdb5596b2079d865dd9e055}{R\+E\+A\+D\+\_\+\+M\+O\+DE}})
+\begin{DoxyCompactList}\small\item\em function to set sleep or work mode and check the response. response will contain either sds011\+\_\+data\+Reporting\+Mode\+Cmd or sds011\+\_\+\+S\+L\+E\+E\+P\+I\+NG, depending on how it was set by this function ( by setting argument set to W\+R\+I\+T\+E\+\_\+\+M\+O\+DE), or how it was set before if argument wr was set to sds011\+\_\+\+A\+SK. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_adb6b05a9fb97fa175dfa3d7194681f3d}{work\+Period\+Cmd}} (uint8\+\_\+t $\ast$response, uint8\+\_\+t minutes=0, uint8\+\_\+t wr=\mbox{\hyperlink{sds011lib_8h_a064cc7153fdb5596b2079d865dd9e055}{R\+E\+A\+D\+\_\+\+M\+O\+DE}})
+\begin{DoxyCompactList}\small\item\em function to set work period for reporting. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_ac0dfdae3b5b512aca1fbe287da29616a}{device\+Info\+Cmd}} (String $\ast$ver, uint16\+\_\+t $\ast$id)
+\begin{DoxyCompactList}\small\item\em Used to get the device firmware version and serial number. response\mbox{[}3\mbox{]} contains firmware date as YY, MM, DD if succesful else FF FF FF. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classsds011_a359f7baaa2272648ef381ed04f604a11}{set\+Debug}} (bool on)
+\begin{DoxyCompactList}\small\item\em setting a debugging flag \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{classsds011_aff3c41586a6f4ac084edfb0da0f05c40}{send\+Command}} (uint8\+\_\+t command, uint8\+\_\+t option\+\_\+1, uint8\+\_\+t option\+\_\+2, uint8\+\_\+t id\+\_\+1, uint8\+\_\+t id\+\_\+2)
+\begin{DoxyCompactList}\small\item\em function to send the command to sensor and fetch the response into a buffer. When no reply is received, usually this is because device was just reporting. This happens when device is in reporting mode, as then the device spits out a a continuous stream of data. In such cases. command has to be sent again to get an answer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_a8ff0bda35ce371348033b9c2983b8999}{get\+Response}} (uint8\+\_\+t cmd, uint8\+\_\+t reply\mbox{[}10\mbox{]})
+\begin{DoxyCompactList}\small\item\em function to send the command to sensor and fetch the response into a buffer. When no reply is received, usually this is because device was just reporting. This happens when device is in reporting mode, as then the device spits out a a continuous stream of data. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classsds011_a2b0c11ba7bef6a0cc7812ced5bb31d60}{sds\+Communicate}} (uint8\+\_\+t command, uint8\+\_\+t option\+\_\+1, uint8\+\_\+t option\+\_\+2, uint8\+\_\+t id\+\_\+1, uint8\+\_\+t id\+\_\+2, uint8\+\_\+t reply\mbox{[}10\mbox{]})
+\begin{DoxyCompactList}\small\item\em function to communicate to sensor by sending a command and fetch the response into a buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classsds011_a65876aa058bdb6997257dac48757aa76}\label{classsds011_a65876aa058bdb6997257dac48757aa76}} 
+uint8\+\_\+t \mbox{\hyperlink{classsds011_a65876aa058bdb6997257dac48757aa76}{\+\_\+rx}}
+\begin{DoxyCompactList}\small\item\em uart rx pin \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsds011_af5352382f195b929e74567224f6d65c3}\label{classsds011_af5352382f195b929e74567224f6d65c3}} 
+uint8\+\_\+t \mbox{\hyperlink{classsds011_af5352382f195b929e74567224f6d65c3}{\+\_\+tx}}
+\begin{DoxyCompactList}\small\item\em uart tx pin \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsds011_af6a7bd17192b5ec971c24380263a7004}\label{classsds011_af6a7bd17192b5ec971c24380263a7004}} 
+uint8\+\_\+t \mbox{\hyperlink{classsds011_af6a7bd17192b5ec971c24380263a7004}{\+\_\+id\+\_\+1}}
+\begin{DoxyCompactList}\small\item\em serial number lower byte \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsds011_a06eef5f34d3b50088080446f0e16604e}\label{classsds011_a06eef5f34d3b50088080446f0e16604e}} 
+uint8\+\_\+t \mbox{\hyperlink{classsds011_a06eef5f34d3b50088080446f0e16604e}{\+\_\+id\+\_\+2}}
+\begin{DoxyCompactList}\small\item\em serial number lower byte \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsds011_a4b5c02bd7c5a65b942893faf97ec9547}\label{classsds011_a4b5c02bd7c5a65b942893faf97ec9547}} 
+bool \mbox{\hyperlink{classsds011_a4b5c02bd7c5a65b942893faf97ec9547}{\+\_\+debug}}
+\begin{DoxyCompactList}\small\item\em the debugging flag \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classsds011_adbf3f2bce299fd52c3dbca71136a35f6}\label{classsds011_adbf3f2bce299fd52c3dbca71136a35f6}} 
+Stream $\ast$ \mbox{\hyperlink{classsds011_adbf3f2bce299fd52c3dbca71136a35f6}{\+\_\+uart}}
+\begin{DoxyCompactList}\small\item\em the hardware uart port \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classsds011}{sds011}} sensor class interface to interace with the hardware 
+
+Definition at line 57 of file sds011lib.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classsds011_a28daf4c12e7757c1afdf37fe4a1ece87}\label{classsds011_a28daf4c12e7757c1afdf37fe4a1ece87}} 
+\index{sds011@{sds011}!begin@{begin}}
+\index{begin@{begin}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily bool sds011\+::begin (\begin{DoxyParamCaption}\item[{Hardware\+Serial $\ast$}]{uart,  }\item[{uint8\+\_\+t}]{rx,  }\item[{uint8\+\_\+t}]{tx,  }\item[{uint8\+\_\+t}]{id\+\_\+1 = {\ttfamily \mbox{\hyperlink{sds011lib_8h_a87c3ec3696c2e8a2489b9930871469b4}{M\+S\+G\+\_\+\+FF}}},  }\item[{uint8\+\_\+t}]{id\+\_\+2 = {\ttfamily \mbox{\hyperlink{sds011lib_8h_a87c3ec3696c2e8a2489b9930871469b4}{M\+S\+G\+\_\+\+FF}}} }\end{DoxyParamCaption})}
+
+
+
+initializes the \mbox{\hyperlink{classsds011}{sds011}} sensor with hardware port and pins 
+
+Specification from the Nova Fitness Co. Ltd. \mbox{\hyperlink{classsds011}{sds011}} data sheet, V1.\+3
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\multicolumn{2}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ U\+A\+RT   }}\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\multicolumn{2}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ U\+A\+RT   }}\\\cline{1-2}
+\endhead
+Bit rate  &9600   \\\cline{1-2}
+Data bit  &8   \\\cline{1-2}
+Parity bit  &NO   \\\cline{1-2}
+Stop bit  &1   \\\cline{1-2}
+Data Packet frequency  &1Hz   \\\cline{1-2}
+\end{longtabu}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em uart} & hardware uart port \\
+\hline
+{\em rx} & uart recieve pin \\
+\hline
+{\em tx} & uart transmit pin \\
+\hline
+{\em id\+\_\+1} & device lower byter \\
+\hline
+{\em id\+\_\+2} & device higher byter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status true when executed seccessfully 
+\end{DoxyReturn}
+
+
+Definition at line 575 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_aa166632fddcea1c7841e3578c1c7678c}\label{classsds011_aa166632fddcea1c7841e3578c1c7678c}} 
+\index{sds011@{sds011}!dataAutoQueryCmd@{dataAutoQueryCmd}}
+\index{dataAutoQueryCmd@{dataAutoQueryCmd}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{dataAutoQueryCmd()}{dataAutoQueryCmd()}}
+{\footnotesize\ttfamily bool sds011\+::data\+Auto\+Query\+Cmd (\begin{DoxyParamCaption}\item[{float $\ast$}]{pm10,  }\item[{float $\ast$}]{pm25 }\end{DoxyParamCaption})}
+
+
+
+function to retrieve PM values with out Query command, it will send automatically at the interval set by the work period command 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pm10} & returned value of P\+M10 sensor value \\
+\hline
+{\em pm25} & returned value of P\+M25 sensor value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status tells the seccessful execution 
+\end{DoxyReturn}
+
+
+Definition at line 358 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_a1416e1fd84eea84ea4d3cdf8a3da8041}\label{classsds011_a1416e1fd84eea84ea4d3cdf8a3da8041}} 
+\index{sds011@{sds011}!dataQueryCmd@{dataQueryCmd}}
+\index{dataQueryCmd@{dataQueryCmd}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{dataQueryCmd()}{dataQueryCmd()}}
+{\footnotesize\ttfamily bool sds011\+::data\+Query\+Cmd (\begin{DoxyParamCaption}\item[{float $\ast$}]{pm10,  }\item[{float $\ast$}]{pm25 }\end{DoxyParamCaption})}
+
+
+
+function to retrieve PM values 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pm10} & returned value of P\+M10 sensor value \\
+\hline
+{\em pm25} & returned value of P\+M25 sensor value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status tells the seccessful execution 
+\end{DoxyReturn}
+
+
+Definition at line 333 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_a5c5ba9739e019b5a877e5800d648a41f}\label{classsds011_a5c5ba9739e019b5a877e5800d648a41f}} 
+\index{sds011@{sds011}!dataReportingModeCmd@{dataReportingModeCmd}}
+\index{dataReportingModeCmd@{dataReportingModeCmd}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{dataReportingModeCmd()}{dataReportingModeCmd()}}
+{\footnotesize\ttfamily bool sds011\+::data\+Reporting\+Mode\+Cmd (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{response,  }\item[{uint8\+\_\+t}]{mod = {\ttfamily \mbox{\hyperlink{sds011lib_8h_aa7af1453a9caa4f85b40e2e386c741ba}{A\+U\+T\+O\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+M\+O\+DE}}},  }\item[{uint8\+\_\+t}]{wr = {\ttfamily \mbox{\hyperlink{sds011lib_8h_a064cc7153fdb5596b2079d865dd9e055}{R\+E\+A\+D\+\_\+\+M\+O\+DE}}} }\end{DoxyParamCaption})}
+
+
+
+function to set the reporting mode to auto or query response will contain either Q\+U\+E\+R\+Y\+\_\+\+M\+O\+DE or A\+U\+T\+O\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+M\+O\+DE, depending on how it was set by this function ( by setting argument wr to W\+R\+I\+T\+E\+\_\+\+M\+O\+DE), or how it was set before if argument wr was set to R\+E\+A\+D\+\_\+\+M\+O\+DE. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em response} & the return the response of the command \\
+\hline
+{\em mod} & the mode to be set 0\+:auto, 1\+:query \\
+\hline
+{\em wr} & the read (0) or write (1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status tells the seccessful execution 
+\end{DoxyReturn}
+
+
+Definition at line 298 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_a7adab4f4b33b7e9f517dc9179086b6ed}\label{classsds011_a7adab4f4b33b7e9f517dc9179086b6ed}} 
+\index{sds011@{sds011}!deviceIdCmd@{deviceIdCmd}}
+\index{deviceIdCmd@{deviceIdCmd}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{deviceIdCmd()}{deviceIdCmd()}}
+{\footnotesize\ttfamily bool sds011\+::device\+Id\+Cmd (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{response\mbox{[}2\mbox{]},  }\item[{uint8\+\_\+t}]{new\+\_\+\+Id1,  }\item[{uint8\+\_\+t}]{new\+\_\+\+Id2 }\end{DoxyParamCaption})}
+
+
+
+function to set new id/serial number for the sensor. Device id is two bytes, the factory sets each device to a unique id. New id will be returned in response. By default any device is addressed by address FF FF. This is the default for this library as not many people will connect more than one device to the same serial lines. If this default (FF FF) is used, class instance device id (\+\_\+id\+\_\+1 and \+\_\+id\+\_\+2 ) will not be updated with this new device address, and FF FF will continued to be used to address the device. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em response} & the return ID value \\
+\hline
+{\em new\+\_\+\+Id1} & new id lower byte \\
+\hline
+{\em new\+\_\+\+Id2} & new id higher byte \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status tells the seccessful execution 
+\end{DoxyReturn}
+
+
+Definition at line 398 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_ac0dfdae3b5b512aca1fbe287da29616a}\label{classsds011_ac0dfdae3b5b512aca1fbe287da29616a}} 
+\index{sds011@{sds011}!deviceInfoCmd@{deviceInfoCmd}}
+\index{deviceInfoCmd@{deviceInfoCmd}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{deviceInfoCmd()}{deviceInfoCmd()}}
+{\footnotesize\ttfamily bool sds011\+::device\+Info\+Cmd (\begin{DoxyParamCaption}\item[{String $\ast$}]{ver,  }\item[{uint16\+\_\+t $\ast$}]{id }\end{DoxyParamCaption})}
+
+
+
+Used to get the device firmware version and serial number. response\mbox{[}3\mbox{]} contains firmware date as YY, MM, DD if succesful else FF FF FF. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ver} & string version to hold the firware version \\
+\hline
+{\em id} & integer to hold the serial number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status the status of the command 
+\end{DoxyReturn}
+
+
+Definition at line 522 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_a8ff0bda35ce371348033b9c2983b8999}\label{classsds011_a8ff0bda35ce371348033b9c2983b8999}} 
+\index{sds011@{sds011}!getResponse@{getResponse}}
+\index{getResponse@{getResponse}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{getResponse()}{getResponse()}}
+{\footnotesize\ttfamily bool sds011\+::get\+Response (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{cmd,  }\item[{uint8\+\_\+t}]{reply\mbox{[}10\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+function to send the command to sensor and fetch the response into a buffer. When no reply is received, usually this is because device was just reporting. This happens when device is in reporting mode, as then the device spits out a a continuous stream of data. 
+
+Prompts sensor to report measurement data. If sensor is in report query mode, an according query command is sent first, otherwise, the next measurent reported in the
+
+Specification from the Nova Fitness Co. Ltd. Laser Dust Sensor Control Protocol, V1.\+4
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{9}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Byte  }&\multicolumn{2}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Name  }}&\cellcolor{\tableheadbgcolor}\textbf{ Set Mode Reply  }&\cellcolor{\tableheadbgcolor}\textbf{ Query Data Reply  }&\cellcolor{\tableheadbgcolor}\textbf{ Set ID reply  }&\cellcolor{\tableheadbgcolor}\textbf{ Sleep / Work Reply  }&\cellcolor{\tableheadbgcolor}\textbf{ FW Version Reply  }&\cellcolor{\tableheadbgcolor}\textbf{ Working Period Reply   }\\\cline{1-9}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Byte  }&\multicolumn{2}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Name  }}&\cellcolor{\tableheadbgcolor}\textbf{ Set Mode Reply  }&\cellcolor{\tableheadbgcolor}\textbf{ Query Data Reply  }&\cellcolor{\tableheadbgcolor}\textbf{ Set ID reply  }&\cellcolor{\tableheadbgcolor}\textbf{ Sleep / Work Reply  }&\cellcolor{\tableheadbgcolor}\textbf{ FW Version Reply  }&\cellcolor{\tableheadbgcolor}\textbf{ Working Period Reply   }\\\cline{1-9}
+\endhead
+\PBS\centering 0  &\multicolumn{2}{l|}{Message header  }&AA  &AA  &AA  &AA  &AA  &AA   \\\cline{1-9}
+\PBS\centering 1  &\multicolumn{2}{l|}{Command ID  }&C5  &C0  &C5  &C5  &C5  &C5   \\\cline{1-9}
+\PBS\centering 2  &\multicolumn{2}{l|}{D\+A\+TA 1  }&2  &P\+M2.\+5 Low byte  &5  &6  &7  &8   \\\cline{1-9}
+\PBS\centering 3  &\multicolumn{2}{l|}{D\+A\+TA 2  }&0\+: query / 1\+: set  &P\+M2.\+5 High byte  &0  &0\+: query / 1\+: set  &Byte 1\+: year  &0\+: query / 1\+: set   \\\cline{1-9}
+\PBS\centering 4  &\multicolumn{2}{l|}{D\+A\+TA 3  }&0\+: auto / 1\+: query  &P\+M10 Low byte  &0  &0\+: sleep / 1\+: work  &Byte 2\+: month  &0\+: continuous / 1-\/30\+: minutes sleep   \\\cline{1-9}
+\PBS\centering 5  &\multicolumn{2}{l|}{D\+A\+TA 4  }&0  &P\+M10 High byte  &0  &0  &Byte 3\+: day  &0   \\\cline{1-9}
+\PBS\centering 6  &\multicolumn{2}{l|}{D\+A\+TA 5  }&ID byte 1  &ID byte 1  &New ID byte 1  &ID byte 1  &ID byte 1  &ID byte 1   \\\cline{1-9}
+\PBS\centering 7  &\multicolumn{2}{l|}{D\+A\+TA 6  }&ID byte 2  &ID byte 2  &New ID byte 2  &ID byte 2  &ID byte 2  &ID byte 2   \\\cline{1-9}
+\PBS\centering 8  &\multicolumn{2}{l|}{Check-\/sum  }&Check-\/sum  &Check-\/sum  &Check-\/sum  &Check-\/sum  &Check-\/sum  &Check-\/sum   \\\cline{1-9}
+\PBS\centering 9  &\multicolumn{2}{l|}{Message tail  }&AB  &AB  &AB  &AB  &AB  &AB   \\\cline{1-9}
+\end{longtabu}
+
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\multicolumn{2}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ Calculation   }}\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\multicolumn{2}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ Calculation   }}\\\cline{1-2}
+\endhead
+Check-\/sum\+:  &Check-\/sum = D\+A\+T\+A1 + D\+A\+T\+A2 + ... + D\+A\+T\+A6   \\\cline{1-2}
+P\+M2.\+5 value\+:  &P\+M2.\+5 (μg /m3) = ((P\+M2.\+5 High byte $\ast$256) + P\+M2.\+5 low byte)/10   \\\cline{1-2}
+P\+M10 value\+:  &P\+M10 (μg /m3) = ((P\+M10 high byte$\ast$256) + P\+M10 low byte)/10   \\\cline{1-2}
+\end{longtabu}
+
+
+\begin{DoxySeeAlso}{See also}
+\href{https://web.archive.org/web/20200525083221/https://www-sd-nf.oss-cn-beijing.aliyuncs.com/%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD/sds011%20laser%20PM2.5%20sensor%20specification-V1.4.pdf}{\texttt{ https\+://web.\+archive.\+org/web/20200525083221/https\+://www-\/sd-\/nf.\+oss-\/cn-\/beijing.\+aliyuncs.\+com/\%\+E5\%\+A\+E\%98\%\+E7\%\+B\+D\%91\%\+E4\%\+B8\%8\+B\%\+E8\%\+B\+D\%\+B\+D/sds011\%20laser\%20\+P\+M2.\+5\%20sensor\%20specification-\/\+V1.\+4.\+pdf}} 
+
+\href{https://www.arduinoforum.de/attachment.php?aid=3023}{\texttt{ https\+://www.\+arduinoforum.\+de/attachment.\+php?aid=3023}}
+\end{DoxySeeAlso}
+In such cases. command has to be sent again to get an answer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & one byte of the command to be sent \\
+\hline
+{\em reply} & ten bytes of the command response \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status tells the seccessful execution 
+\end{DoxyReturn}
+
+
+Definition at line 211 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_a2b0c11ba7bef6a0cc7812ced5bb31d60}\label{classsds011_a2b0c11ba7bef6a0cc7812ced5bb31d60}} 
+\index{sds011@{sds011}!sdsCommunicate@{sdsCommunicate}}
+\index{sdsCommunicate@{sdsCommunicate}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{sdsCommunicate()}{sdsCommunicate()}}
+{\footnotesize\ttfamily bool sds011\+::sds\+Communicate (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{command,  }\item[{uint8\+\_\+t}]{option\+\_\+1,  }\item[{uint8\+\_\+t}]{option\+\_\+2,  }\item[{uint8\+\_\+t}]{id\+\_\+1,  }\item[{uint8\+\_\+t}]{id\+\_\+2,  }\item[{uint8\+\_\+t}]{reply\mbox{[}10\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+function to communicate to sensor by sending a command and fetch the response into a buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & one byte of the command to be sent \\
+\hline
+{\em option\+\_\+1} & first parameter of the command, depends on different positions in the command array \\
+\hline
+{\em option\+\_\+2} & second parameter of the command, depends on different positions in the command array \\
+\hline
+{\em id\+\_\+1} & the id\+\_\+lsb where commands to be send \\
+\hline
+{\em id\+\_\+2} & the id\+\_\+msb where commands to be send \\
+\hline
+{\em reply} & ten bytes of the command response \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status tells the seccessful execution 
+\end{DoxyReturn}
+
+
+Definition at line 59 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_aff3c41586a6f4ac084edfb0da0f05c40}\label{classsds011_aff3c41586a6f4ac084edfb0da0f05c40}} 
+\index{sds011@{sds011}!sendCommand@{sendCommand}}
+\index{sendCommand@{sendCommand}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{sendCommand()}{sendCommand()}}
+{\footnotesize\ttfamily uint8\+\_\+t sds011\+::send\+Command (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{command,  }\item[{uint8\+\_\+t}]{option\+\_\+1,  }\item[{uint8\+\_\+t}]{option\+\_\+2,  }\item[{uint8\+\_\+t}]{id\+\_\+1,  }\item[{uint8\+\_\+t}]{id\+\_\+2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+function to send the command to sensor and fetch the response into a buffer. When no reply is received, usually this is because device was just reporting. This happens when device is in reporting mode, as then the device spits out a a continuous stream of data. In such cases. command has to be sent again to get an answer. 
+
+Sends command to the sensor.
+
+Specification from the Nova Fitness Co. Ltd. Laser Dust Sensor Control Protocol, V1.\+4
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{9}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Byte  }&\multicolumn{2}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Name  }}&\cellcolor{\tableheadbgcolor}\textbf{ Reporting Mode  }&\cellcolor{\tableheadbgcolor}\textbf{ Query Data  }&\cellcolor{\tableheadbgcolor}\textbf{ Set ID  }&\cellcolor{\tableheadbgcolor}\textbf{ Manual Sleep / Work  }&\cellcolor{\tableheadbgcolor}\textbf{ Get Firmware Version  }&\cellcolor{\tableheadbgcolor}\textbf{ Set Working Period   }\\\cline{1-9}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Byte  }&\multicolumn{2}{l|}{\cellcolor{\tableheadbgcolor}\textbf{ Name  }}&\cellcolor{\tableheadbgcolor}\textbf{ Reporting Mode  }&\cellcolor{\tableheadbgcolor}\textbf{ Query Data  }&\cellcolor{\tableheadbgcolor}\textbf{ Set ID  }&\cellcolor{\tableheadbgcolor}\textbf{ Manual Sleep / Work  }&\cellcolor{\tableheadbgcolor}\textbf{ Get Firmware Version  }&\cellcolor{\tableheadbgcolor}\textbf{ Set Working Period   }\\\cline{1-9}
+\endhead
+\PBS\centering 0  &\multicolumn{2}{l|}{Message header  }&AA  &AA  &AA  &AA  &AA  &AA   \\\cline{1-9}
+\PBS\centering 1  &\multicolumn{2}{l|}{Command ID  }&B4  &B4  &B4  &B4  &B4  &B4   \\\cline{1-9}
+\PBS\centering 2  &\multicolumn{2}{l|}{D\+A\+TA 1  }&2  &4  &5  &6  &7  &8   \\\cline{1-9}
+\PBS\centering 3  &\multicolumn{2}{l|}{D\+A\+TA 2  }&0\+: query / 1\+: set  &0  &0  &0\+: query / 1\+: set  &0  &0\+: query / 1\+: set   \\\cline{1-9}
+\PBS\centering 4  &\multicolumn{2}{l|}{D\+A\+TA 3  }&0\+: auto / 1\+: query  &0  &0  &0\+: sleep / 1\+: work  &0  &0\+: continuous / 1-\/30\+: minutes sleep   \\\cline{1-9}
+\PBS\centering 5  &\multicolumn{2}{l|}{D\+A\+TA 4  }&0  &0  &0  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 6  &\multicolumn{2}{l|}{D\+A\+TA 5  }&0  &0  &0  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 7  &\multicolumn{2}{l|}{D\+A\+TA 6  }&0  &0  &0  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 8  &\multicolumn{2}{l|}{D\+A\+TA 7  }&0  &0  &0  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 9  &\multicolumn{2}{l|}{D\+A\+TA 8  }&0  &0  &0  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 10  &\multicolumn{2}{l|}{D\+A\+TA 9  }&0  &0  &0  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 11  &\multicolumn{2}{l|}{D\+A\+TA 10  }&0  &0  &0  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 12  &\multicolumn{2}{l|}{D\+A\+TA 11  }&0  &0  &0  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 13  &\multicolumn{2}{l|}{D\+A\+TA 12  }&0  &0  &New ID Byte 1  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 14  &\multicolumn{2}{l|}{D\+A\+TA 13  }&0  &0  &New ID Byte 2  &0  &0  &0   \\\cline{1-9}
+\PBS\centering 15  &\multicolumn{2}{l|}{D\+A\+TA 14  }&ID Byte 1 (FF\+: all)  &ID Byte 1 (FF\+: all)  &ID Byte 1 (FF\+: all)  &ID Byte 1 (FF\+: all)  &ID Byte 1 (FF\+: all)  &ID Byte 1 (FF\+: all)   \\\cline{1-9}
+\PBS\centering 16  &\multicolumn{2}{l|}{D\+A\+TA 15  }&ID Byte 2 (FF\+: all)  &ID Byte 2 (FF\+: all)  &ID Byte 2 (FF\+: all)  &ID Byte 2 (FF\+: all)  &ID Byte 2 (FF\+: all)  &ID Byte 2 (FF\+: all)   \\\cline{1-9}
+\PBS\centering 17  &\multicolumn{2}{l|}{Check-\/sum  }&checksum  &checksum  &checksum  &checksum  &checksum  &checksum   \\\cline{1-9}
+\PBS\centering 18  &\multicolumn{2}{l|}{Message tail  }&AB  &AB  &AB  &AB  &AB  &AB   \\\cline{1-9}
+\end{longtabu}
+
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\multicolumn{2}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ Calculation   }}\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\multicolumn{2}{|l|}{\cellcolor{\tableheadbgcolor}\textbf{ Calculation   }}\\\cline{1-2}
+\endhead
+Check-\/sum\+:  &Check-\/sum = D\+A\+T\+A1 + D\+A\+T\+A2 + ... + D\+A\+T\+A15   \\\cline{1-2}
+\end{longtabu}
+
+
+\begin{DoxySeeAlso}{See also}
+\href{https://www.arduinoforum.de/attachment.php?aid=3023}{\texttt{ https\+://www.\+arduinoforum.\+de/attachment.\+php?aid=3023}}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em command} & one byte of the command to be sent \\
+\hline
+{\em option\+\_\+1} & first parameter of the command, depends on different positions in the command array \\
+\hline
+{\em option\+\_\+2} & second parameter of the command, depends on different positions in the command array \\
+\hline
+{\em id\+\_\+1} & the id\+\_\+lsb where commands to be send \\
+\hline
+{\em id\+\_\+2} & the id\+\_\+msb where commands to be send \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status tells the seccessful execution 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_a359f7baaa2272648ef381ed04f604a11}\label{classsds011_a359f7baaa2272648ef381ed04f604a11}} 
+\index{sds011@{sds011}!setDebug@{setDebug}}
+\index{setDebug@{setDebug}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{setDebug()}{setDebug()}}
+{\footnotesize\ttfamily void sds011\+::set\+Debug (\begin{DoxyParamCaption}\item[{bool}]{on }\end{DoxyParamCaption})}
+
+
+
+setting a debugging flag 
+
+
+\begin{DoxyParams}{Parameters}
+{\em on} & bool flag for debugging \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line 549 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_ad9ddddbcb9213f2b0674dee5fb47a5de}\label{classsds011_ad9ddddbcb9213f2b0674dee5fb47a5de}} 
+\index{sds011@{sds011}!sleepWorkModeCmd@{sleepWorkModeCmd}}
+\index{sleepWorkModeCmd@{sleepWorkModeCmd}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{sleepWorkModeCmd()}{sleepWorkModeCmd()}}
+{\footnotesize\ttfamily bool sds011\+::sleep\+Work\+Mode\+Cmd (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{response,  }\item[{uint8\+\_\+t}]{mod = {\ttfamily \mbox{\hyperlink{sds011lib_8h_a6999479ba92a931638a17a00c35a5234}{W\+O\+R\+K\+\_\+\+M\+O\+DE}}},  }\item[{uint8\+\_\+t}]{wr = {\ttfamily \mbox{\hyperlink{sds011lib_8h_a064cc7153fdb5596b2079d865dd9e055}{R\+E\+A\+D\+\_\+\+M\+O\+DE}}} }\end{DoxyParamCaption})}
+
+
+
+function to set sleep or work mode and check the response. response will contain either sds011\+\_\+data\+Reporting\+Mode\+Cmd or sds011\+\_\+\+S\+L\+E\+E\+P\+I\+NG, depending on how it was set by this function ( by setting argument set to W\+R\+I\+T\+E\+\_\+\+M\+O\+DE), or how it was set before if argument wr was set to sds011\+\_\+\+A\+SK. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em response} & the return value of the command \\
+\hline
+{\em mod} & sleep or work mode \\
+\hline
+{\em wr} & parameter to set (write) or unset (get) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status tells the seccessful execution 
+\end{DoxyReturn}
+
+
+Definition at line 446 of file sds011lib.\+cpp.
+
+\mbox{\Hypertarget{classsds011_adb6b05a9fb97fa175dfa3d7194681f3d}\label{classsds011_adb6b05a9fb97fa175dfa3d7194681f3d}} 
+\index{sds011@{sds011}!workPeriodCmd@{workPeriodCmd}}
+\index{workPeriodCmd@{workPeriodCmd}!sds011@{sds011}}
+\subsubsection{\texorpdfstring{workPeriodCmd()}{workPeriodCmd()}}
+{\footnotesize\ttfamily bool sds011\+::work\+Period\+Cmd (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{response,  }\item[{uint8\+\_\+t}]{minutes = {\ttfamily 0},  }\item[{uint8\+\_\+t}]{wr = {\ttfamily \mbox{\hyperlink{sds011lib_8h_a064cc7153fdb5596b2079d865dd9e055}{R\+E\+A\+D\+\_\+\+M\+O\+DE}}} }\end{DoxyParamCaption})}
+
+
+
+function to set work period for reporting. 
+
+response will contain 0 ( for continuous mode) or the Interval time in minutes (for interval mode). According to the datasheet device will sleep during the interval and become active 30 seconds before the interval is reached. 
+\begin{DoxyParams}{Parameters}
+{\em response} & the return value of the work perion command \\
+\hline
+{\em minutes} & duration of sleep time \\
+\hline
+{\em wr} & parameter to set (write) or unset (get) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status tells the seccessful execution 
+\end{DoxyReturn}
+
+
+Definition at line 487 of file sds011lib.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+esp32-\/stationary/\mbox{\hyperlink{sds011lib_8h}{sds011lib.\+h}}\item 
+esp32-\/stationary/\mbox{\hyperlink{sds011lib_8cpp}{sds011lib.\+cpp}}\end{DoxyCompactItemize}
