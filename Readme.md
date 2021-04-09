@@ -11,8 +11,6 @@ This project uses a ESP32 HELTEC Board, a SDS011 particulate matter sensor and a
 ## How to use this repository
 The repository can be used with Arduino IDE with ESP32 board and some pre-requisit libraries installed on it. The details can be looked at: "./src/Latex/refman.pdf".
  
-## Contributors
-This repository was constructed by [TECO-KIT](https://www.teco.edu/ "TECO-KIT").
-
+## Copyright
 Unless otherwise noted: 
 Copyright 2017-2021 Karlsruhe Institute of Technology / TECO
