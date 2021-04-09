@@ -13,7 +13,6 @@ The repository can be used with Arduino IDE with ESP32 board and some pre-requis
  
 ## Contributors
 This repository was constructed by [TECO-KIT](https://www.teco.edu/ "TECO-KIT").
- 
-## Licence
-This code belongs to [TECO-KIT](https://www.teco.edu/ "TECO-KIT") and must be reffered when used. BSD license, all used library's Licences 
-must be included in any redistribution.
+
+Unless otherwise noted: 
+Copyright 2017-2021 Karlsruhe Institute of Technology / TECO
