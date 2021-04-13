@@ -14,3 +14,9 @@ The repository can be used with Arduino IDE with ESP32 board and some pre-requis
 ## Copyright
 Unless otherwise noted: 
 Copyright 2017-2021 Karlsruhe Institute of Technology / TECO
+
+## License
+The code (excluding the imported libraries) was released under a BSD 3-Clause License.
+
+## Acknowledgement
+The development was supported by the German Ministry for Transport and Digital Infrastructure (BMVI) within grant no. 19F2003A
